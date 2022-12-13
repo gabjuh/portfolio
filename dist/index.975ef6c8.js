@@ -2398,11 +2398,11 @@ function runTimeout(fun) {
     try {
         // when when somebody has screwed with setTimeout but no I.E. maddness
         return cachedSetTimeout(fun, 0);
-    } catch (e) {
+    } catch (e1) {
         try {
             // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
             return cachedSetTimeout.call(null, fun, 0);
-        } catch (e1) {
+        } catch (e) {
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
             return cachedSetTimeout.call(this, fun, 0);
         }
@@ -2419,11 +2419,11 @@ function runClearTimeout(marker) {
     try {
         // when when somebody has screwed with setTimeout but no I.E. maddness
         return cachedClearTimeout(marker);
-    } catch (e) {
+    } catch (e1) {
         try {
             // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
             return cachedClearTimeout.call(null, marker);
-        } catch (e1) {
+        } catch (e) {
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
             // Some versions of I.E. have different rules for clearTimeout vs setTimeout
             return cachedClearTimeout.call(this, marker);
@@ -2504,13 +2504,13 @@ process.umask = function() {
 };
 
 },{}],"ShInH":[function(require,module,exports) {
-"use strict";
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "890e741a975ef6c8";
+"use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
@@ -2920,7 +2920,7 @@ var _mainDefault = parcelHelpers.interopDefault(_main);
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom":"j6uA9","./app":"bNKaB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./js/main":"1SICI"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom":"j6uA9","./app":"bNKaB","./js/main":"1SICI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
 
@@ -3623,7 +3623,8 @@ module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
         if (type === null || type === undefined || typeof type === "string") return;
         var propTypes;
         if (typeof type === "function") propTypes = type.propTypes;
-        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Inner props are checked in the reconciler.
+        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+        // Inner props are checked in the reconciler.
         type.$$typeof === REACT_MEMO_TYPE)) propTypes = type.propTypes;
         else return;
         if (propTypes) {
@@ -5145,7 +5146,8 @@ module.exports = require("./cjs/react.development.js");
         if (type === null || type === undefined || typeof type === "string") return;
         var propTypes;
         if (typeof type === "function") propTypes = type.propTypes;
-        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Inner props are checked in the reconciler.
+        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+        // Inner props are checked in the reconciler.
         type.$$typeof === REACT_MEMO_TYPE)) propTypes = type.propTypes;
         else return;
         if (propTypes) {
@@ -6506,7 +6508,8 @@ module.exports = require("./cjs/react-dom.development.js");
         var type = props.type;
         if (value != null) {
             if (type === "number") {
-                if (value === 0 && node.value === "" || // eslint-disable-next-line
+                if (value === 0 && node.value === "" || // We explicitly want to coerce to number here if possible.
+                // eslint-disable-next-line
                 node.value != value) node.value = toString(value);
             } else if (node.value !== toString(value)) node.value = toString(value);
         } else if (type === "submit" || type === "reset") {
@@ -9659,7 +9662,8 @@ module.exports = require("./cjs/react-dom.development.js");
         nextLanes = pendingLanes & getEqualOrHigherPriorityLanes(nextLanes); // If we're already in the middle of a render, switching lanes will interrupt
         // it and we'll lose our progress. We should only do this if the new lanes are
         // higher priority.
-        if (wipLanes !== NoLanes && wipLanes !== nextLanes && // bother waiting until the root is complete.
+        if (wipLanes !== NoLanes && wipLanes !== nextLanes && // If we already suspended with a delay, then interrupting is fine. Don't
+        // bother waiting until the root is complete.
         (wipLanes & suspendedLanes) === NoLanes) {
             getHighestPriorityLanes(wipLanes);
             var wipLanePriority = return_highestLanePriority;
@@ -10622,7 +10626,8 @@ module.exports = require("./cjs/react-dom.development.js");
  * This is required because Firefox fires `keypress` events for key commands
  * (cut, copy, select-all, etc.) even though no character is inserted.
  */ function isKeypressCommand(nativeEvent) {
-        return (nativeEvent.ctrlKey || nativeEvent.altKey || nativeEvent.metaKey) && !(nativeEvent.ctrlKey && nativeEvent.altKey);
+        return (nativeEvent.ctrlKey || nativeEvent.altKey || nativeEvent.metaKey) && // ctrlKey && altKey is equivalent to AltGr, and is not a command.
+        !(nativeEvent.ctrlKey && nativeEvent.altKey);
     }
     /**
  * Translate native top level events into event types.
@@ -11684,7 +11689,8 @@ module.exports = require("./cjs/react-dom.development.js");
         // In the past, React has always bubbled them, but this can be surprising.
         // We're going to try aligning closer to the browser behavior by not bubbling
         // them in React either. We'll start by not bubbling onScroll, and then expand.
-        var accumulateTargetOnly = !inCapturePhase && // nonDelegatedEvents list in DOMPluginEventSystem.
+        var accumulateTargetOnly = !inCapturePhase && // TODO: ideally, we'd eventually add all events from
+        // nonDelegatedEvents list in DOMPluginEventSystem.
         // Then we can remove this special list.
         // This is a breaking change that can wait until React 18.
         domEventName === "scroll";
@@ -12652,7 +12658,8 @@ module.exports = require("./cjs/react-dom.development.js");
                 var serverValue = void 0;
                 var propertyInfo = getPropertyInfo(propKey);
                 if (suppressHydrationWarning) ;
-                else if (propKey === SUPPRESS_CONTENT_EDITABLE_WARNING || propKey === SUPPRESS_HYDRATION_WARNING || // TODO: Only ignore them on controlled tags.
+                else if (propKey === SUPPRESS_CONTENT_EDITABLE_WARNING || propKey === SUPPRESS_HYDRATION_WARNING || // Controlled attributes are not validated
+                // TODO: Only ignore them on controlled tags.
                 propKey === "value" || propKey === "checked" || propKey === "selected") ;
                 else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
                     var serverHTML = domElement.innerHTML;
@@ -13994,7 +14001,8 @@ module.exports = require("./cjs/react-dom.development.js");
     ReactStrictModeWarnings.recordUnsafeLifecycleWarnings = function(fiber, instance) {
         // Dedup strategy: Warn once per component.
         if (didWarnAboutUnsafeLifecycles.has(fiber.type)) return;
-        if (typeof instance.componentWillMount === "function" && instance.componentWillMount.__suppressDeprecationWarning !== true) pendingComponentWillMountWarnings.push(fiber);
+        if (typeof instance.componentWillMount === "function" && // Don't warn about react-lifecycles-compat polyfilled components.
+        instance.componentWillMount.__suppressDeprecationWarning !== true) pendingComponentWillMountWarnings.push(fiber);
         if (fiber.mode & StrictMode && typeof instance.UNSAFE_componentWillMount === "function") pendingUNSAFE_ComponentWillMountWarnings.push(fiber);
         if (typeof instance.componentWillReceiveProps === "function" && instance.componentWillReceiveProps.__suppressDeprecationWarning !== true) pendingComponentWillReceivePropsWarnings.push(fiber);
         if (fiber.mode & StrictMode && typeof instance.UNSAFE_componentWillReceiveProps === "function") pendingUNSAFE_ComponentWillReceivePropsWarnings.push(fiber);
@@ -15093,7 +15101,8 @@ module.exports = require("./cjs/react-dom.development.js");
         if (mixedRef !== null && typeof mixedRef !== "function" && typeof mixedRef !== "object") {
             // TODO: Clean this up once we turn on the string ref warning for
             // everyone, because the strict mode case will no longer be relevant
-            if ((returnFiber.mode & StrictMode || warnAboutStringRefs) && // because these cannot be automatically converted to an arrow function
+            if ((returnFiber.mode & StrictMode || warnAboutStringRefs) && // We warn in ReactElement.js if owner and self are equal for string refs
+            // because these cannot be automatically converted to an arrow function
             // using a codemod. Therefore, we don't have to warn about string refs again.
             !(element._owner && element._self && element._owner.stateNode !== element._self)) {
                 var componentName = getComponentName(returnFiber.type) || "Component";
@@ -15476,7 +15485,8 @@ module.exports = require("./cjs/react-dom.development.js");
             if (!(typeof iteratorFn === "function")) throw Error("An object is not an iterable. This error is likely caused by a bug in React. Please file an issue.");
             // We don't support rendering Generators because it's a mutation.
             // See https://github.com/facebook/react/issues/12995
-            if (typeof Symbol === "function" && newChildrenIterable[Symbol.toStringTag] === "Generator") {
+            if (typeof Symbol === "function" && // $FlowFixMe Flow doesn't know about toStringTag
+            newChildrenIterable[Symbol.toStringTag] === "Generator") {
                 if (!didWarnAboutGenerators) error("Using Generators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. Keep in mind you might need to polyfill these features for older browsers.");
                 didWarnAboutGenerators = true;
             } // Warn about using Maps as children
@@ -15849,7 +15859,8 @@ module.exports = require("./cjs/react-dom.development.js");
                     var dehydrated = state.dehydrated;
                     if (dehydrated === null || isSuspenseInstancePending(dehydrated) || isSuspenseInstanceFallback(dehydrated)) return node;
                 }
-            } else if (node.tag === SuspenseListComponent && // keep track of whether it suspended or not.
+            } else if (node.tag === SuspenseListComponent && // revealOrder undefined can't be trusted because it don't
+            // keep track of whether it suspended or not.
             node.memoizedProps.revealOrder !== undefined) {
                 var didSuspend = (node.flags & DidCapture) !== NoFlags;
                 if (didSuspend) return node;
@@ -17910,7 +17921,8 @@ module.exports = require("./cjs/react-dom.development.js");
     function updateMemoComponent(current, workInProgress, Component, nextProps, updateLanes, renderLanes) {
         if (current === null) {
             var type = Component.type;
-            if (isSimpleFunctionComponent(type) && Component.compare === null && Component.defaultProps === undefined) {
+            if (isSimpleFunctionComponent(type) && Component.compare === null && // SimpleMemoComponent codepath doesn't resolve outer props either.
+            Component.defaultProps === undefined) {
                 var resolvedType = type;
                 resolvedType = resolveFunctionForHotReloading(type);
                 // and with only the default shallow comparison, we upgrade it
@@ -18690,7 +18702,8 @@ module.exports = require("./cjs/react-dom.development.js");
         };
         var primaryChildFragment;
         if (// completed, even though it's in an inconsistent state.
-        (mode & BlockingMode) === NoMode && // already cloned. In legacy mode, the only case where this isn't true is
+        (mode & BlockingMode) === NoMode && // Make sure we're on the second pass, i.e. the primary child fragment was
+        // already cloned. In legacy mode, the only case where this isn't true is
         // when DevTools forces us to display a fallback; we skip the first render
         // pass entirely and go straight to rendering the fallback. (In Concurrent
         // Mode, SuspenseList can also trigger this scenario, but this is a legacy-
@@ -20976,7 +20989,8 @@ module.exports = require("./cjs/react-dom.development.js");
         // priority as an argument to that function and this one.
         var priorityLevel = getCurrentPriorityLevel();
         if (lane === SyncLane) {
-            if ((executionContext & LegacyUnbatchedContext) !== NoContext && (executionContext & (RenderContext | CommitContext)) === NoContext) {
+            if ((executionContext & LegacyUnbatchedContext) !== NoContext && // Check if we're not already rendering
+            (executionContext & (RenderContext | CommitContext)) === NoContext) {
                 // Register pending interactions on the root to avoid losing traced interaction data.
                 schedulePendingInteractions(root, lane); // This is a legacy edge case. The initial mount of a ReactDOM.render-ed
                 // root inside of batchedUpdates should be synchronous, but layout updates
@@ -21159,7 +21173,8 @@ module.exports = require("./cjs/react-dom.development.js");
             case RootSuspended:
                 markRootSuspended$1(root, lanes); // We have an acceptable loading state. We need to figure out if we
                 // should immediately commit it or wait a bit.
-                if (includesOnlyRetries(lanes) && !shouldForceFlushFallbacksInDEV()) {
+                if (includesOnlyRetries(lanes) && // do not delay if we're inside an act() scope
+                !shouldForceFlushFallbacksInDEV()) {
                     // This render only included retries, no updates. Throttle committing
                     // retries so that we don't show too many loading states too quickly.
                     var msUntilTimeout = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now(); // Don't bother with a very short suspense time.
@@ -21621,7 +21636,8 @@ module.exports = require("./cjs/react-dom.development.js");
                     return;
                 }
                 resetChildLanes(completedWork);
-                if (returnFiber !== null && (returnFiber.flags & Incomplete) === NoFlags) {
+                if (returnFiber !== null && // Do not append effects to parents if a sibling failed to complete
+                (returnFiber.flags & Incomplete) === NoFlags) {
                     // Append all the effects of the subtree and this fiber onto the effect
                     // list of the parent. The completion order of the children affects the
                     // side-effect order.
@@ -23743,7 +23759,9 @@ module.exports = require("./cjs/react-dom.development.js");
     setAttemptHydrationAtCurrentPriority(attemptHydrationAtCurrentPriority$1);
     setAttemptHydrationAtPriority(runWithPriority$2);
     var didWarnAboutUnstableCreatePortal = false;
-    if (typeof Map !== "function" || Map.prototype == null || typeof Map.prototype.forEach !== "function" || typeof Set !== "function" || Set.prototype == null || typeof Set.prototype.clear !== "function" || typeof Set.prototype.forEach !== "function") error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
+    if (typeof Map !== "function" || // $FlowIssue Flow incorrectly thinks Map has no prototype
+    Map.prototype == null || typeof Map.prototype.forEach !== "function" || typeof Set !== "function" || // $FlowIssue Flow incorrectly thinks Set has no prototype
+    Set.prototype == null || typeof Set.prototype.clear !== "function" || typeof Set.prototype.forEach !== "function") error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
     setRestoreImplementation(restoreControlledState$3);
     setBatchingImplementation(batchedUpdates$1, discreteUpdates$1, flushDiscreteUpdates, batchedEventUpdates$1);
     function createPortal$1(children, container) {
@@ -23839,7 +23857,8 @@ module.exports = require("./cjs/scheduler.development.js");
         };
     }
     if (// implementation using setTimeout.
-    typeof window === "undefined" || typeof MessageChannel !== "function") {
+    typeof window === "undefined" || // Check if MessageChannel is supported, too.
+    typeof MessageChannel !== "function") {
         // If this accidentally gets imported in a non-browser environment, e.g. JavaScriptCore,
         // fallback to a naive implementation.
         var _callback = null;
@@ -24607,7 +24626,7 @@ exports.default = App = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./components/Header":"hsJbF","./components/Experiences":"crMjE","./components/Certificates":"3P7gb","./components/Demos":"f6RaK","./components/Footer":"8pPOA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/GetCv":"4GjrG"}],"hsJbF":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./components/Header":"hsJbF","./components/Experiences":"crMjE","./components/Certificates":"3P7gb","./components/Demos":"f6RaK","./components/Footer":"8pPOA","./components/GetCv":"4GjrG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hsJbF":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$bfed = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -24672,8 +24691,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _headerJson = require("../js/header.json");
-var _profilImgSmPng = require("../img/profil_img_sm.png");
-var _profilImgSmPngDefault = parcelHelpers.interopDefault(_profilImgSmPng);
+var _profilFotoNeuSmJpg = require("../img/profil_foto_neu_sm.jpg");
+var _profilFotoNeuSmJpgDefault = parcelHelpers.interopDefault(_profilFotoNeuSmJpg);
 exports.default = Title = ()=>{
     const header = _headerJson.header;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -24701,7 +24720,7 @@ exports.default = Title = ()=>{
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                         id: "profile-img",
                         className: "rounded-circle",
-                        src: (0, _profilImgSmPngDefault.default)
+                        src: (0, _profilFotoNeuSmJpgDefault.default)
                     }, void 0, false, {
                         fileName: "src/components/Title.js",
                         lineNumber: 14,
@@ -24761,7 +24780,7 @@ exports.default = Title = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/header.json":"6tnQc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../img/profil_img_sm.png":"gJ7dP"}],"6tnQc":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/header.json":"6tnQc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../img/profil_foto_neu_sm.jpg":"kq2od"}],"6tnQc":[function(require,module,exports) {
 module.exports = JSON.parse('{"header":{"greeting":"Hey, my name is","name":"G\xe1bor Juh\xe1sz","jobTitle":"Fullstack Web Developer","aboutTitle":"About me","aboutText":"I work as a junior Web Developer and looking for new challenges in my career in order to become more experienced. I do frontend using SCSS and Bootstrap, and backend with the combination of most popular technologies like NodeJS, React, Laravel and MySQL. My future plan is to create scalable and more complex applications, and learn new technologies in order to give a better user experience and performance.","quoteLine1":"\\"Success is not the question of talent,","quoteLine2":"but the question of diligence.\\""}}');
 
 },{}],"gkKU3":[function(require,module,exports) {
@@ -24799,14 +24818,28 @@ exports.export = function(dest, destName, get) {
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
     var args;
-    var timeout = undefined;
-    return function(args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args);
-        }, delay);
-    };
+    {
+        let timeout = undefined;
+        let lastTime = 0;
+        return function(args) {
+            // Call immediately if last call was more than the delay ago.
+            // Otherwise, set a timeout. This means the first call is fast
+            // (for the common case of a single update), and subsequent updates
+            // are batched.
+            let now = Date.now();
+            if (now - lastTime > delay) {
+                lastTime = now;
+                func.call(null, args);
+            } else {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    timeout = undefined;
+                    lastTime = Date.now();
+                    func.call(null, args);
+                }, delay);
+            }
+        };
+    }
 }
 var enqueueUpdate = debounce(function() {
     Refresh.performReactRefresh();
@@ -24914,8 +24947,8 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}],"gJ7dP":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "profil_img_sm.25bd635d.png" + "?" + Date.now();
+},{"react-refresh/runtime":"786KC"}],"kq2od":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "profil_foto_neu_sm.a1960325.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -25372,7 +25405,7 @@ exports.default = Job = (props)=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Tech":"6PnKo","../svg/calendar.svg":"6KoM0","../svg/location.svg":"7j9Zg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../js/domain":"a3bdn","./References":"6Hqo5","./Button-References":"20DFq","../ico/external-link.svg":"f590g","../js/helpers":"hGI1E"}],"6PnKo":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Tech":"6PnKo","./References":"6Hqo5","./Button-References":"20DFq","../js/helpers":"hGI1E","../svg/calendar.svg":"6KoM0","../svg/location.svg":"7j9Zg","../js/domain":"a3bdn","../ico/external-link.svg":"f590g","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6PnKo":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$0000 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25404,19 +25437,7 @@ exports.default = Tech = (props)=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6KoM0":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "calendar.0d90b347.svg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"7j9Zg":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "location.c3702665.svg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"a3bdn":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-"use strict";
-exports.default = domain = "https://gaborjuhasz.de/";
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6Hqo5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6Hqo5":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5f3b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25479,7 +25500,7 @@ exports.default = References = (props)=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../ico/external-link.svg":"f590g"}],"f590g":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../ico/external-link.svg":"f590g","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"f590g":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "external-link.a7d3edbf.svg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"20DFq":[function(require,module,exports) {
@@ -25535,6 +25556,18 @@ const skipLastBorder = (i, a)=>{
     if (i === a.length - 1) border = "";
     return border;
 };
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6KoM0":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "calendar.0d90b347.svg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"7j9Zg":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "location.c3702665.svg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"a3bdn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+"use strict";
+exports.default = domain = "https://gaborjuhasz.de/";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hsLZV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$22b6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -25689,7 +25722,7 @@ exports.default = School = (props)=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Tech":"6PnKo","../svg/calendar.svg":"6KoM0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../js/helpers":"hGI1E"}],"6lnyZ":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Tech":"6PnKo","../js/helpers":"hGI1E","../svg/calendar.svg":"6KoM0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6lnyZ":[function(require,module,exports) {
 module.exports = JSON.parse('{"jobs":[{"id":"inline_kuriere","title":"inline Kuriere","location":"Hamburg","tech":["PHP7","HTML5","CSS3"],"start":"2018","end":"2019","recommendation":"inline_Referenz.pdf"},{"id":"LMS","title":"Musikschule der GEMEINN\xdcTZIGEN","location":"L\xfcbeck","tech":["Joomla","CMS","JS"],"start":"2017","end":"","reference":["https://luebeckermusikschule.de"]},{"id":"web4musicians","title":"Online Portfolio for Musicians","location":"Remote","tech":["Wordpress","JS"],"start":"2017","end":"2021","reference":["https://ferdinand-junghaenel.de","https://concierto-iberico.com","https://franciskahajdu.de","https://leasuter.com"]}],"schools":[{"school":"Webmasters Fernakademie","title":"Moderne Webanwendungen mit PHP & MySQL","tech":["SQL","PHP8","OOP","Laravel"],"start":"2022","end":"2022"},{"school":"Webmasters Fernakademie","title":"Moderne Webanwendungen mit JavaScript","tech":["JS","JS DOM","NodeJS","TDD","React"],"start":"2021","end":"2022"},{"school":"Webmasters Fernakademie","title":"Webdesign & Usability","tech":["HTML5","CSS3","UX/UI","SCSS","Bootstrap"],"start":"2021","end":"2021"},{"school":"sgd Fernschule","title":"PHP & MySQL","tech":["PHP7","MySQL","Git","HTML5","CSS3"],"start":"2020","end":"2021"},{"school":"Udemy","title":"Several basic courses","tech":["HTML5","CSS3","Wordpress","JS","JQ","Git"],"start":"2017","end":"2019"}]}');
 
 },{}],"3P7gb":[function(require,module,exports) {
@@ -26187,7 +26220,7 @@ exports.default = Footer = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/footer.json":"5lkQ1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../svg/envelope.svg":"aL1gD"}],"5lkQ1":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/footer.json":"5lkQ1","../svg/envelope.svg":"aL1gD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5lkQ1":[function(require,module,exports) {
 module.exports = JSON.parse('{"footer":{"copyright":"Ⓒ G\xe1bor Juh\xe1sz 2022"}}');
 
 },{}],"aL1gD":[function(require,module,exports) {
@@ -26217,7 +26250,7 @@ exports.default = GetCv = ()=>{
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                 className: "btn px-4",
                 target: "_blank",
-                href: `${(0, _domainDefault.default)}src/pdf/Gabor_Juhasz_CV.pdf`,
+                href: `${(0, _domainDefault.default)}src/pdf/Lebenslauf_Gabor_Juhasz.pdf`,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                         className: "mt-2 d-block mx-auto",
@@ -26255,7 +26288,7 @@ exports.default = GetCv = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../svg/cv.svg":"7gNM1","../js/domain":"a3bdn"}],"7gNM1":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../svg/cv.svg":"7gNM1","../js/domain":"a3bdn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7gNM1":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "cv.5d9588bd.svg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"1SICI":[function(require,module,exports) {
@@ -26265,7 +26298,11 @@ var _stylesScss = require("../scss/styles.scss");
 var _bootstrap = require("bootstrap");
 
 },{"../scss/styles.scss":"9FwRA","bootstrap":"h36JB"}],"9FwRA":[function() {},{}],"h36JB":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/*!
+  * Bootstrap v5.2.3 (https://getbootstrap.com/)
+  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Alert", ()=>Alert);
 parcelHelpers.export(exports, "Button", ()=>Button);
@@ -26279,14 +26316,10 @@ parcelHelpers.export(exports, "ScrollSpy", ()=>ScrollSpy);
 parcelHelpers.export(exports, "Tab", ()=>Tab);
 parcelHelpers.export(exports, "Toast", ()=>Toast);
 parcelHelpers.export(exports, "Tooltip", ()=>Tooltip);
-/*!
-  * Bootstrap v5.2.0 (https://getbootstrap.com/)
-  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-  */ var _core = require("@popperjs/core");
+var _core = require("@popperjs/core");
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/index.js
+ * Bootstrap (v5.2.3): util/index.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ const MAX_UID = 1000000;
@@ -26464,7 +26497,7 @@ const executeAfterTransition = (callback, transitionElement, waitForTransition =
 };
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): dom/event-handler.js
+ * Bootstrap (v5.2.3): dom/event-handler.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -26694,7 +26727,7 @@ function hydrateObj(obj, meta) {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): dom/data.js
+ * Bootstrap (v5.2.3): dom/data.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -26725,7 +26758,7 @@ const Data = {
 };
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): dom/manipulator.js
+ * Bootstrap (v5.2.3): dom/manipulator.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ function normalizeData(value) {
@@ -26767,7 +26800,7 @@ const Manipulator = {
 };
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/config.js
+ * Bootstrap (v5.2.3): util/config.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -26812,12 +26845,12 @@ const Manipulator = {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): base-component.js
+ * Bootstrap (v5.2.3): base-component.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
  * Constants
- */ const VERSION = "5.2.0";
+ */ const VERSION = "5.2.3";
 /**
  * Class definition
  */ class BaseComponent extends Config {
@@ -26864,7 +26897,7 @@ const Manipulator = {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/component-functions.js
+ * Bootstrap (v5.2.3): util/component-functions.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ const enableDismissTrigger = (component, method = "hide")=>{
@@ -26883,7 +26916,7 @@ const Manipulator = {
 };
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): alert.js
+ * Bootstrap (v5.2.3): alert.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -26931,7 +26964,7 @@ const CLASS_NAME_SHOW$8 = "show";
  */ defineJQueryPlugin(Alert);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): button.js
+ * Bootstrap (v5.2.3): button.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -26974,7 +27007,7 @@ const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
  */ defineJQueryPlugin(Button);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): dom/selector-engine.js
+ * Bootstrap (v5.2.3): dom/selector-engine.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -27035,7 +27068,7 @@ const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
 };
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/swipe.js
+ * Bootstrap (v5.2.3): util/swipe.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -27128,7 +27161,7 @@ const DefaultType$c = {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): carousel.js
+ * Bootstrap (v5.2.3): carousel.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -27425,7 +27458,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$3, ()=>{
  */ defineJQueryPlugin(Carousel);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): collapse.js
+ * Bootstrap (v5.2.3): collapse.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -27600,7 +27633,7 @@ const DefaultType$a = {
  */ defineJQueryPlugin(Collapse);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): dropdown.js
+ * Bootstrap (v5.2.3): dropdown.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -27667,7 +27700,8 @@ const DefaultType$9 = {
         super(element, config);
         this._popper = null;
         this._parent = this._element.parentNode; // dropdown wrapper
-        this._menu = SelectorEngine.findOne(SELECTOR_MENU, this._parent);
+        // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+        this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
         this._inNavbar = this._detectNavbar();
     }
     static get Default() {
@@ -27842,8 +27876,8 @@ const DefaultType$9 = {
         ].includes(event.key);
         if (!isUpOrDownEvent && !isEscapeEvent) return;
         if (isInput && !isEscapeEvent) return;
-        event.preventDefault();
-        const getToggleButton = SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
+        event.preventDefault(); // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+        const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
         const instance = Dropdown.getOrCreateInstance(getToggleButton);
         if (isUpOrDownEvent) {
             event.stopPropagation();
@@ -27874,7 +27908,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, functi
  */ defineJQueryPlugin(Dropdown);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/scrollBar.js
+ * Bootstrap (v5.2.3): util/scrollBar.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -27950,7 +27984,7 @@ const PROPERTY_MARGIN = "margin-right";
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/backdrop.js
+ * Bootstrap (v5.2.3): util/backdrop.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -28051,7 +28085,7 @@ const DefaultType$8 = {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/focustrap.js
+ * Bootstrap (v5.2.3): util/focustrap.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -28118,7 +28152,7 @@ const DefaultType$7 = {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): modal.js
+ * Bootstrap (v5.2.3): modal.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -28134,6 +28168,7 @@ const EVENT_HIDDEN$4 = `hidden${EVENT_KEY$4}`;
 const EVENT_SHOW$4 = `show${EVENT_KEY$4}`;
 const EVENT_SHOWN$4 = `shown${EVENT_KEY$4}`;
 const EVENT_RESIZE$1 = `resize${EVENT_KEY$4}`;
+const EVENT_CLICK_DISMISS = `click.dismiss${EVENT_KEY$4}`;
 const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$4}`;
 const EVENT_KEYDOWN_DISMISS$1 = `keydown.dismiss${EVENT_KEY$4}`;
 const EVENT_CLICK_DATA_API$2 = `click${EVENT_KEY$4}${DATA_API_KEY$2}`;
@@ -28262,13 +28297,15 @@ const DefaultType$6 = {
             if (this._isShown && !this._isTransitioning) this._adjustDialog();
         });
         EventHandler.on(this._element, EVENT_MOUSEDOWN_DISMISS, (event)=>{
-            if (event.target !== event.currentTarget) // click is inside modal-dialog
-            return;
-            if (this._config.backdrop === "static") {
-                this._triggerBackdropTransition();
-                return;
-            }
-            if (this._config.backdrop) this.hide();
+            // a bad trick to segregate clicks that may start inside dialog but end outside, and avoid listen to scrollbar clicks
+            EventHandler.one(this._element, EVENT_CLICK_DISMISS, (event2)=>{
+                if (this._element !== event.target || this._element !== event2.target) return;
+                if (this._config.backdrop === "static") {
+                    this._triggerBackdropTransition();
+                    return;
+                }
+                if (this._config.backdrop) this.hide();
+            });
         });
     }
     _hideModal() {
@@ -28357,7 +28394,7 @@ enableDismissTrigger(Modal);
  */ defineJQueryPlugin(Modal);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): offcanvas.js
+ * Bootstrap (v5.2.3): offcanvas.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -28530,7 +28567,7 @@ enableDismissTrigger(Offcanvas);
  */ defineJQueryPlugin(Offcanvas);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/sanitizer.js
+ * Bootstrap (v5.2.3): util/sanitizer.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ const uriAttributes = new Set([
@@ -28634,7 +28671,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): util/template-factory.js
+ * Bootstrap (v5.2.3): util/template-factory.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -28747,7 +28784,7 @@ const DefaultContentType = {
 }
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): tooltip.js
+ * Bootstrap (v5.2.3): tooltip.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -28839,13 +28876,14 @@ const DefaultType$3 = {
         super(element, config); // Private
         this._isEnabled = true;
         this._timeout = 0;
-        this._isHovered = false;
+        this._isHovered = null;
         this._activeTrigger = {};
         this._popper = null;
         this._templateFactory = null;
         this._newContent = null; // Protected
         this.tip = null;
         this._setListeners();
+        if (!this._config.selector) this._fixTitle();
     }
     static get Default() {
         return Default$3;
@@ -28865,15 +28903,9 @@ const DefaultType$3 = {
     toggleEnabled() {
         this._isEnabled = !this._isEnabled;
     }
-    toggle(event) {
+    toggle() {
         if (!this._isEnabled) return;
-        if (event) {
-            const context = this._initializeOnDelegatedTarget(event);
-            context._activeTrigger.click = !context._activeTrigger.click;
-            if (context._isWithActiveTrigger()) context._enter();
-            else context._leave();
-            return;
-        }
+        this._activeTrigger.click = !this._activeTrigger.click;
         if (this._isShown()) {
             this._leave();
             return;
@@ -28883,7 +28915,7 @@ const DefaultType$3 = {
     dispose() {
         clearTimeout(this._timeout);
         EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
-        if (this.tip) this.tip.remove();
+        if (this._element.getAttribute("data-bs-original-title")) this._element.setAttribute("title", this._element.getAttribute("data-bs-original-title"));
         this._disposePopper();
         super.dispose();
     }
@@ -28895,10 +28927,7 @@ const DefaultType$3 = {
         const isInTheDom = (shadowRoot || this._element.ownerDocument.documentElement).contains(this._element);
         if (showEvent.defaultPrevented || !isInTheDom) return;
          // todo v6 remove this OR make it optional
-        if (this.tip) {
-            this.tip.remove();
-            this.tip = null;
-        }
+        this._disposePopper();
         const tip = this._getTipElement();
         this._element.setAttribute("aria-describedby", tip.getAttribute("id"));
         const { container  } = this._config;
@@ -28906,18 +28935,16 @@ const DefaultType$3 = {
             container.append(tip);
             EventHandler.trigger(this._element, this.constructor.eventName(EVENT_INSERTED));
         }
-        if (this._popper) this._popper.update();
-        else this._popper = this._createPopper(tip);
+        this._popper = this._createPopper(tip);
         tip.classList.add(CLASS_NAME_SHOW$2); // If this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
         if ("ontouchstart" in document.documentElement) for (const element of [].concat(...document.body.children))EventHandler.on(element, "mouseover", noop);
         const complete = ()=>{
-            const previousHoverState = this._isHovered;
-            this._isHovered = false;
             EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOWN$2));
-            if (previousHoverState) this._leave();
+            if (this._isHovered === false) this._leave();
+            this._isHovered = false;
         };
         this._queueCallback(complete, this.tip, this._isAnimated());
     }
@@ -28932,13 +28959,12 @@ const DefaultType$3 = {
         this._activeTrigger[TRIGGER_CLICK] = false;
         this._activeTrigger[TRIGGER_FOCUS] = false;
         this._activeTrigger[TRIGGER_HOVER] = false;
-        this._isHovered = false;
+        this._isHovered = null; // it is a trick to support manual triggering
         const complete = ()=>{
             if (this._isWithActiveTrigger()) return;
-            if (!this._isHovered) tip.remove();
+            if (!this._isHovered) this._disposePopper();
             this._element.removeAttribute("aria-describedby");
             EventHandler.trigger(this._element, this.constructor.eventName(EVENT_HIDDEN$2));
-            this._disposePopper();
         };
         this._queueCallback(complete, this.tip, this._isAnimated());
     }
@@ -28986,7 +29012,7 @@ const DefaultType$3 = {
         };
     }
     _getTitle() {
-        return this._resolvePossibleFunction(this._config.title) || this._config.originalTitle;
+        return this._resolvePossibleFunction(this._config.title) || this._element.getAttribute("data-bs-original-title");
     }
     _initializeOnDelegatedTarget(event) {
         return this.constructor.getOrCreateInstance(event.delegateTarget, this._getDelegateConfig());
@@ -29059,7 +29085,10 @@ const DefaultType$3 = {
     _setListeners() {
         const triggers = this._config.trigger.split(" ");
         for (const trigger of triggers){
-            if (trigger === "click") EventHandler.on(this._element, this.constructor.eventName(EVENT_CLICK$1), this._config.selector, (event)=>this.toggle(event));
+            if (trigger === "click") EventHandler.on(this._element, this.constructor.eventName(EVENT_CLICK$1), this._config.selector, (event)=>{
+                const context = this._initializeOnDelegatedTarget(event);
+                context.toggle();
+            });
             else if (trigger !== TRIGGER_MANUAL) {
                 const eventIn = trigger === TRIGGER_HOVER ? this.constructor.eventName(EVENT_MOUSEENTER) : this.constructor.eventName(EVENT_FOCUSIN$1);
                 const eventOut = trigger === TRIGGER_HOVER ? this.constructor.eventName(EVENT_MOUSELEAVE) : this.constructor.eventName(EVENT_FOCUSOUT$1);
@@ -29079,17 +29108,12 @@ const DefaultType$3 = {
             if (this._element) this.hide();
         };
         EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
-        if (this._config.selector) this._config = {
-            ...this._config,
-            trigger: "manual",
-            selector: ""
-        };
-        else this._fixTitle();
     }
     _fixTitle() {
-        const title = this._config.originalTitle;
+        const title = this._element.getAttribute("title");
         if (!title) return;
         if (!this._element.getAttribute("aria-label") && !this._element.textContent.trim()) this._element.setAttribute("aria-label", title);
+        this._element.setAttribute("data-bs-original-title", title); // DO NOT USE IT. Is only for backwards compatibility
         this._element.removeAttribute("title");
     }
     _enter() {
@@ -29134,7 +29158,6 @@ const DefaultType$3 = {
             show: config.delay,
             hide: config.delay
         };
-        config.originalTitle = this._element.getAttribute("title") || "";
         if (typeof config.title === "number") config.title = config.title.toString();
         if (typeof config.content === "number") config.content = config.content.toString();
         return config;
@@ -29142,7 +29165,8 @@ const DefaultType$3 = {
     _getDelegateConfig() {
         const config = {};
         for(const key in this._config)if (this.constructor.Default[key] !== this._config[key]) config[key] = this._config[key];
-         // In the future can be replaced with:
+        config.selector = false;
+        config.trigger = "manual"; // In the future can be replaced with:
         // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
         // `Object.fromEntries(keysWithDifferentValues)`
         return config;
@@ -29151,6 +29175,10 @@ const DefaultType$3 = {
         if (this._popper) {
             this._popper.destroy();
             this._popper = null;
+        }
+        if (this.tip) {
+            this.tip.remove();
+            this.tip = null;
         }
     }
     static jQueryInterface(config) {
@@ -29167,7 +29195,7 @@ const DefaultType$3 = {
  */ defineJQueryPlugin(Tooltip);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): popover.js
+ * Bootstrap (v5.2.3): popover.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -29229,7 +29257,7 @@ const DefaultType$2 = {
  */ defineJQueryPlugin(Popover);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): scrollspy.js
+ * Bootstrap (v5.2.3): scrollspy.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -29257,14 +29285,20 @@ const Default$1 = {
     // TODO: v6 @deprecated, keep it for backwards compatibility reasons
     rootMargin: "0px 0px -25%",
     smoothScroll: false,
-    target: null
+    target: null,
+    threshold: [
+        0.1,
+        0.5,
+        1
+    ]
 };
 const DefaultType$1 = {
     offset: "(number|null)",
     // TODO v6 @deprecated, keep it for backwards compatibility reasons
     rootMargin: "string",
     smoothScroll: "boolean",
-    target: "element"
+    target: "element",
+    threshold: "array"
 };
 /**
  * Class definition
@@ -29304,7 +29338,9 @@ const DefaultType$1 = {
     }
     _configAfterMerge(config) {
         // TODO: on v6 target should be given explicitly & remove the {target: 'ss-target'} case
-        config.target = getElement(config.target) || document.body;
+        config.target = getElement(config.target) || document.body; // TODO: v6 Only for backwards compatibility reasons. Use rootMargin only
+        config.rootMargin = config.offset ? `${config.offset}px 0px -30%` : config.rootMargin;
+        if (typeof config.threshold === "string") config.threshold = config.threshold.split(",").map((value)=>Number.parseFloat(value));
         return config;
     }
     _maybeEnableSmoothScroll() {
@@ -29331,12 +29367,8 @@ const DefaultType$1 = {
     _getNewObserver() {
         const options = {
             root: this._rootElement,
-            threshold: [
-                0.1,
-                0.5,
-                1
-            ],
-            rootMargin: this._getRootMargin()
+            threshold: this._config.threshold,
+            rootMargin: this._config.rootMargin
         };
         return new IntersectionObserver((entries)=>this._observerCallback(entries), options);
     }
@@ -29363,9 +29395,6 @@ const DefaultType$1 = {
             } // if we are scrolling up, pick the smallest offsetTop
             if (!userScrollsDown && !entryIsLowerThanPrevious) activate(entry);
         }
-    }
-    _getRootMargin() {
-        return this._config.offset ? `${this._config.offset}px 0px -30%` : this._config.rootMargin;
     }
     _initializeTargetsAndObservables() {
         this._targetLinks = new Map();
@@ -29425,7 +29454,7 @@ const DefaultType$1 = {
  */ defineJQueryPlugin(ScrollSpy);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): tab.js
+ * Bootstrap (v5.2.3): tab.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -29450,7 +29479,6 @@ const CLASS_NAME_SHOW$1 = "show";
 const CLASS_DROPDOWN = "dropdown";
 const SELECTOR_DROPDOWN_TOGGLE = ".dropdown-toggle";
 const SELECTOR_DROPDOWN_MENU = ".dropdown-menu";
-const SELECTOR_DROPDOWN_ITEM = ".dropdown-item";
 const NOT_SELECTOR_DROPDOWN_TOGGLE = ":not(.dropdown-toggle)";
 const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
 const SELECTOR_OUTER = ".nav-item, .list-group-item";
@@ -29497,7 +29525,6 @@ const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"]
                 element.classList.add(CLASS_NAME_SHOW$1);
                 return;
             }
-            element.focus();
             element.removeAttribute("tabindex");
             element.setAttribute("aria-selected", true);
             this._toggleDropDown(element, true);
@@ -29540,7 +29567,12 @@ const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"]
             ARROW_DOWN_KEY
         ].includes(event.key);
         const nextActiveElement = getNextActiveElement(this._getChildren().filter((element)=>!isDisabled(element)), event.target, isNext, true);
-        if (nextActiveElement) Tab.getOrCreateInstance(nextActiveElement).show();
+        if (nextActiveElement) {
+            nextActiveElement.focus({
+                preventScroll: true
+            });
+            Tab.getOrCreateInstance(nextActiveElement).show();
+        }
     }
     _getChildren() {
         // collection of inner elements
@@ -29578,7 +29610,6 @@ const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"]
         };
         toggle(SELECTOR_DROPDOWN_TOGGLE, CLASS_NAME_ACTIVE);
         toggle(SELECTOR_DROPDOWN_MENU, CLASS_NAME_SHOW$1);
-        toggle(SELECTOR_DROPDOWN_ITEM, CLASS_NAME_ACTIVE);
         outerElem.setAttribute("aria-expanded", open);
     }
     _setAttributeIfNotExists(element, attribute, value) {
@@ -29622,7 +29653,7 @@ const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"]
  */ defineJQueryPlugin(Tab);
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.0): toast.js
+ * Bootstrap (v5.2.3): toast.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */ /**
@@ -30130,32 +30161,40 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _instanceOfJs = require("./instanceOf.js");
 var _mathJs = require("../utils/math.js");
-function getBoundingClientRect(element, includeScale) {
+var _getWindowJs = require("./getWindow.js");
+var _getWindowJsDefault = parcelHelpers.interopDefault(_getWindowJs);
+var _isLayoutViewportJs = require("./isLayoutViewport.js");
+var _isLayoutViewportJsDefault = parcelHelpers.interopDefault(_isLayoutViewportJs);
+function getBoundingClientRect(element, includeScale, isFixedStrategy) {
     if (includeScale === void 0) includeScale = false;
-    var rect = element.getBoundingClientRect();
+    if (isFixedStrategy === void 0) isFixedStrategy = false;
+    var clientRect = element.getBoundingClientRect();
     var scaleX = 1;
     var scaleY = 1;
-    if ((0, _instanceOfJs.isHTMLElement)(element) && includeScale) {
-        var offsetHeight = element.offsetHeight;
-        var offsetWidth = element.offsetWidth; // Do not attempt to divide by 0, otherwise we get `Infinity` as scale
-        // Fallback to 1 in case both values are `0`
-        if (offsetWidth > 0) scaleX = (0, _mathJs.round)(rect.width) / offsetWidth || 1;
-        if (offsetHeight > 0) scaleY = (0, _mathJs.round)(rect.height) / offsetHeight || 1;
+    if (includeScale && (0, _instanceOfJs.isHTMLElement)(element)) {
+        scaleX = element.offsetWidth > 0 ? (0, _mathJs.round)(clientRect.width) / element.offsetWidth || 1 : 1;
+        scaleY = element.offsetHeight > 0 ? (0, _mathJs.round)(clientRect.height) / element.offsetHeight || 1 : 1;
     }
+    var _ref = (0, _instanceOfJs.isElement)(element) ? (0, _getWindowJsDefault.default)(element) : window, visualViewport = _ref.visualViewport;
+    var addVisualOffsets = !(0, _isLayoutViewportJsDefault.default)() && isFixedStrategy;
+    var x = (clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) / scaleX;
+    var y = (clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) / scaleY;
+    var width = clientRect.width / scaleX;
+    var height = clientRect.height / scaleY;
     return {
-        width: rect.width / scaleX,
-        height: rect.height / scaleY,
-        top: rect.top / scaleY,
-        right: rect.right / scaleX,
-        bottom: rect.bottom / scaleY,
-        left: rect.left / scaleX,
-        x: rect.left / scaleX,
-        y: rect.top / scaleY
+        width: width,
+        height: height,
+        top: y,
+        right: x + width,
+        bottom: y + height,
+        left: x,
+        x: x,
+        y: y
     };
 }
 exports.default = getBoundingClientRect;
 
-},{"./instanceOf.js":"gYFUC","../utils/math.js":"gQqVe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gQqVe":[function(require,module,exports) {
+},{"./instanceOf.js":"gYFUC","../utils/math.js":"gQqVe","./getWindow.js":"2SkOo","./isLayoutViewport.js":"3ipHv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gQqVe":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "max", ()=>max);
@@ -30164,6 +30203,28 @@ parcelHelpers.export(exports, "round", ()=>round);
 var max = Math.max;
 var min = Math.min;
 var round = Math.round;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ipHv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _userAgentJs = require("../utils/userAgent.js");
+var _userAgentJsDefault = parcelHelpers.interopDefault(_userAgentJs);
+function isLayoutViewport() {
+    return !/^((?!chrome|android).)*safari/i.test((0, _userAgentJsDefault.default)());
+}
+exports.default = isLayoutViewport;
+
+},{"../utils/userAgent.js":"1hEx0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1hEx0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function getUAString() {
+    var uaData = navigator.userAgentData;
+    if (uaData != null && uaData.brands) return uaData.brands.map(function(item) {
+        return item.brand + "/" + item.version;
+    }).join(" ");
+    return navigator.userAgent;
+}
+exports.default = getUAString;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4QxRR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -30198,14 +30259,17 @@ var _isTableElementJs = require("./isTableElement.js");
 var _isTableElementJsDefault = parcelHelpers.interopDefault(_isTableElementJs);
 var _getParentNodeJs = require("./getParentNode.js");
 var _getParentNodeJsDefault = parcelHelpers.interopDefault(_getParentNodeJs);
+var _userAgentJs = require("../utils/userAgent.js");
+var _userAgentJsDefault = parcelHelpers.interopDefault(_userAgentJs);
 function getTrueOffsetParent(element) {
-    if (!(0, _instanceOfJs.isHTMLElement)(element) || (0, _getComputedStyleJsDefault.default)(element).position === "fixed") return null;
+    if (!(0, _instanceOfJs.isHTMLElement)(element) || // https://github.com/popperjs/popper-core/issues/837
+    (0, _getComputedStyleJsDefault.default)(element).position === "fixed") return null;
     return element.offsetParent;
 } // `.offsetParent` reports `null` for fixed elements, while absolute elements
 // return the containing block
 function getContainingBlock(element) {
-    var isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") !== -1;
-    var isIE = navigator.userAgent.indexOf("Trident") !== -1;
+    var isFirefox = /firefox/i.test((0, _userAgentJsDefault.default)());
+    var isIE = /Trident/i.test((0, _userAgentJsDefault.default)());
     if (isIE && (0, _instanceOfJs.isHTMLElement)(element)) {
         // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
         var elementCss = (0, _getComputedStyleJsDefault.default)(element);
@@ -30237,7 +30301,7 @@ function getOffsetParent(element) {
 }
 exports.default = getOffsetParent;
 
-},{"./getWindow.js":"2SkOo","./getNodeName.js":"a2Qom","./getComputedStyle.js":"3mZjB","./instanceOf.js":"gYFUC","./isTableElement.js":"2qBb7","./getParentNode.js":"bIHpd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3mZjB":[function(require,module,exports) {
+},{"./getWindow.js":"2SkOo","./getNodeName.js":"a2Qom","./getComputedStyle.js":"3mZjB","./instanceOf.js":"gYFUC","./isTableElement.js":"2qBb7","./getParentNode.js":"bIHpd","../utils/userAgent.js":"1hEx0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3mZjB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _getWindowJs = require("./getWindow.js");
@@ -30273,7 +30337,9 @@ function getParentNode(element) {
     if ((0, _getNodeNameJsDefault.default)(element) === "html") return element;
     return(// $FlowFixMe[incompatible-return]
     // $FlowFixMe[prop-missing]
-    element.assignedSlot || element.parentNode || ((0, _instanceOfJs.isShadowRoot)(element) ? element.host : null) || // $FlowFixMe[incompatible-call]: HTMLElement is a Node
+    element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
+    element.parentNode || ((0, _instanceOfJs.isShadowRoot)(element) ? element.host : null) || // ShadowRoot detected
+    // $FlowFixMe[incompatible-call]: HTMLElement is a Node
     (0, _getDocumentElementJsDefault.default)(element) // fallback
     );
 }
@@ -30714,12 +30780,12 @@ var _expandToHashMapJs = require("./expandToHashMap.js"); // eslint-disable-next
 var _expandToHashMapJsDefault = parcelHelpers.interopDefault(_expandToHashMapJs);
 function detectOverflow(state, options) {
     if (options === void 0) options = {};
-    var _options = options, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? (0, _enumsJs.clippingParents) : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? (0, _enumsJs.viewport) : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? (0, _enumsJs.popper) : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
+    var _options = options, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$strategy = _options.strategy, strategy = _options$strategy === void 0 ? state.strategy : _options$strategy, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? (0, _enumsJs.clippingParents) : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? (0, _enumsJs.viewport) : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? (0, _enumsJs.popper) : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
     var paddingObject = (0, _mergePaddingObjectJsDefault.default)(typeof padding !== "number" ? padding : (0, _expandToHashMapJsDefault.default)(padding, (0, _enumsJs.basePlacements)));
     var altContext = elementContext === (0, _enumsJs.popper) ? (0, _enumsJs.reference) : (0, _enumsJs.popper);
     var popperRect = state.rects.popper;
     var element = state.elements[altBoundary ? altContext : elementContext];
-    var clippingClientRect = (0, _getClippingRectJsDefault.default)((0, _instanceOfJs.isElement)(element) ? element : element.contextElement || (0, _getDocumentElementJsDefault.default)(state.elements.popper), boundary, rootBoundary);
+    var clippingClientRect = (0, _getClippingRectJsDefault.default)((0, _instanceOfJs.isElement)(element) ? element : element.contextElement || (0, _getDocumentElementJsDefault.default)(state.elements.popper), boundary, rootBoundary, strategy);
     var referenceClientRect = (0, _getBoundingClientRectJsDefault.default)(state.elements.reference);
     var popperOffsets = (0, _computeOffsetsJsDefault.default)({
         reference: referenceClientRect,
@@ -30783,8 +30849,8 @@ var _getNodeNameJsDefault = parcelHelpers.interopDefault(_getNodeNameJs);
 var _rectToClientRectJs = require("../utils/rectToClientRect.js");
 var _rectToClientRectJsDefault = parcelHelpers.interopDefault(_rectToClientRectJs);
 var _mathJs = require("../utils/math.js");
-function getInnerBoundingClientRect(element) {
-    var rect = (0, _getBoundingClientRectJsDefault.default)(element);
+function getInnerBoundingClientRect(element, strategy) {
+    var rect = (0, _getBoundingClientRectJsDefault.default)(element, false, strategy === "fixed");
     rect.top = rect.top + element.clientTop;
     rect.left = rect.left + element.clientLeft;
     rect.bottom = rect.top + element.clientHeight;
@@ -30795,8 +30861,8 @@ function getInnerBoundingClientRect(element) {
     rect.y = rect.top;
     return rect;
 }
-function getClientRectFromMixedType(element, clippingParent) {
-    return clippingParent === (0, _enumsJs.viewport) ? (0, _rectToClientRectJsDefault.default)((0, _getViewportRectJsDefault.default)(element)) : (0, _instanceOfJs.isElement)(clippingParent) ? getInnerBoundingClientRect(clippingParent) : (0, _rectToClientRectJsDefault.default)((0, _getDocumentRectJsDefault.default)((0, _getDocumentElementJsDefault.default)(element)));
+function getClientRectFromMixedType(element, clippingParent, strategy) {
+    return clippingParent === (0, _enumsJs.viewport) ? (0, _rectToClientRectJsDefault.default)((0, _getViewportRectJsDefault.default)(element, strategy)) : (0, _instanceOfJs.isElement)(clippingParent) ? getInnerBoundingClientRect(clippingParent, strategy) : (0, _rectToClientRectJsDefault.default)((0, _getDocumentRectJsDefault.default)((0, _getDocumentElementJsDefault.default)(element)));
 } // A "clipping parent" is an overflowable container with the characteristic of
 // clipping (or hiding) overflowing elements with a position different from
 // `initial`
@@ -30813,20 +30879,20 @@ function getClippingParents(element) {
         return (0, _instanceOfJs.isElement)(clippingParent) && (0, _containsJsDefault.default)(clippingParent, clipperElement) && (0, _getNodeNameJsDefault.default)(clippingParent) !== "body";
     });
 } // Gets the maximum area that the element is visible in due to any number of
-function getClippingRect(element, boundary, rootBoundary) {
+function getClippingRect(element, boundary, rootBoundary, strategy) {
     var mainClippingParents = boundary === "clippingParents" ? getClippingParents(element) : [].concat(boundary);
     var clippingParents = [].concat(mainClippingParents, [
         rootBoundary
     ]);
     var firstClippingParent = clippingParents[0];
     var clippingRect = clippingParents.reduce(function(accRect, clippingParent) {
-        var rect = getClientRectFromMixedType(element, clippingParent);
+        var rect = getClientRectFromMixedType(element, clippingParent, strategy);
         accRect.top = (0, _mathJs.max)(rect.top, accRect.top);
         accRect.right = (0, _mathJs.min)(rect.right, accRect.right);
         accRect.bottom = (0, _mathJs.min)(rect.bottom, accRect.bottom);
         accRect.left = (0, _mathJs.max)(rect.left, accRect.left);
         return accRect;
-    }, getClientRectFromMixedType(element, firstClippingParent));
+    }, getClientRectFromMixedType(element, firstClippingParent, strategy));
     clippingRect.width = clippingRect.right - clippingRect.left;
     clippingRect.height = clippingRect.bottom - clippingRect.top;
     clippingRect.x = clippingRect.left;
@@ -30844,29 +30910,21 @@ var _getDocumentElementJs = require("./getDocumentElement.js");
 var _getDocumentElementJsDefault = parcelHelpers.interopDefault(_getDocumentElementJs);
 var _getWindowScrollBarXJs = require("./getWindowScrollBarX.js");
 var _getWindowScrollBarXJsDefault = parcelHelpers.interopDefault(_getWindowScrollBarXJs);
-function getViewportRect(element) {
+var _isLayoutViewportJs = require("./isLayoutViewport.js");
+var _isLayoutViewportJsDefault = parcelHelpers.interopDefault(_isLayoutViewportJs);
+function getViewportRect(element, strategy) {
     var win = (0, _getWindowJsDefault.default)(element);
     var html = (0, _getDocumentElementJsDefault.default)(element);
     var visualViewport = win.visualViewport;
     var width = html.clientWidth;
     var height = html.clientHeight;
     var x = 0;
-    var y = 0; // NB: This isn't supported on iOS <= 12. If the keyboard is open, the popper
-    // can be obscured underneath it.
-    // Also, `html.clientHeight` adds the bottom bar height in Safari iOS, even
-    // if it isn't open, so if this isn't available, the popper will be detected
-    // to overflow the bottom of the screen too early.
+    var y = 0;
     if (visualViewport) {
         width = visualViewport.width;
-        height = visualViewport.height; // Uses Layout Viewport (like Chrome; Safari does not currently)
-        // In Chrome, it returns a value very close to 0 (+/-) but contains rounding
-        // errors due to floating point numbers, so we need to check precision.
-        // Safari returns a number <= 0, usually < -1 when pinch-zoomed
-        // Feature detection fails in mobile emulation mode in Chrome.
-        // Math.abs(win.innerWidth / visualViewport.scale - visualViewport.width) <
-        // 0.001
-        // Fallback here: "Not Safari" userAgent
-        if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+        height = visualViewport.height;
+        var layoutViewport = (0, _isLayoutViewportJsDefault.default)();
+        if (layoutViewport || !layoutViewport && strategy === "fixed") {
             x = visualViewport.offsetLeft;
             y = visualViewport.offsetTop;
         }
@@ -30880,7 +30938,7 @@ function getViewportRect(element) {
 }
 exports.default = getViewportRect;
 
-},{"./getWindow.js":"2SkOo","./getDocumentElement.js":"eJ9Y1","./getWindowScrollBarX.js":"sz4Ld","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"sz4Ld":[function(require,module,exports) {
+},{"./getWindow.js":"2SkOo","./getDocumentElement.js":"eJ9Y1","./getWindowScrollBarX.js":"sz4Ld","./isLayoutViewport.js":"3ipHv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"sz4Ld":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _getBoundingClientRectJs = require("./getBoundingClientRect.js");
@@ -31647,7 +31705,7 @@ function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
     var isOffsetParentAnElement = (0, _instanceOfJs.isHTMLElement)(offsetParent);
     var offsetParentIsScaled = (0, _instanceOfJs.isHTMLElement)(offsetParent) && isElementScaled(offsetParent);
     var documentElement = (0, _getDocumentElementJsDefault.default)(offsetParent);
-    var rect = (0, _getBoundingClientRectJsDefault.default)(elementOrVirtualElement, offsetParentIsScaled);
+    var rect = (0, _getBoundingClientRectJsDefault.default)(elementOrVirtualElement, offsetParentIsScaled, isFixed);
     var scroll = {
         scrollLeft: 0,
         scrollTop: 0
@@ -31657,7 +31715,8 @@ function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
         y: 0
     };
     if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-        if ((0, _getNodeNameJsDefault.default)(offsetParent) !== "body" || (0, _isScrollParentJsDefault.default)(documentElement)) scroll = (0, _getNodeScrollJsDefault.default)(offsetParent);
+        if ((0, _getNodeNameJsDefault.default)(offsetParent) !== "body" || // https://github.com/popperjs/popper-core/issues/1078
+        (0, _isScrollParentJsDefault.default)(documentElement)) scroll = (0, _getNodeScrollJsDefault.default)(offsetParent);
         if ((0, _instanceOfJs.isHTMLElement)(offsetParent)) {
             offsets = (0, _getBoundingClientRectJsDefault.default)(offsetParent, true);
             offsets.x += offsetParent.clientLeft;
@@ -31866,13 +31925,13 @@ exports.default = mergeByName;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1PuRF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "createPopperLite", ()=>(0, _popperLiteJs.createPopper)) // eslint-disable-next-line import/no-unused-modules
+;
 parcelHelpers.export(exports, "createPopper", ()=>createPopper) // eslint-disable-next-line import/no-unused-modules
 ;
 parcelHelpers.export(exports, "popperGenerator", ()=>(0, _createPopperJs.popperGenerator));
 parcelHelpers.export(exports, "defaultModifiers", ()=>defaultModifiers);
 parcelHelpers.export(exports, "detectOverflow", ()=>(0, _createPopperJs.detectOverflow));
-parcelHelpers.export(exports, "createPopperLite", ()=>(0, _popperLiteJs.createPopper)) // eslint-disable-next-line import/no-unused-modules
-;
 var _createPopperJs = require("./createPopper.js");
 var _eventListenersJs = require("./modifiers/eventListeners.js");
 var _eventListenersJsDefault = parcelHelpers.interopDefault(_eventListenersJs);

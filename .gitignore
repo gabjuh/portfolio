@@ -1,5 +1,6 @@
 /0
 /node_modules
+/dist
 /.parcel-cache
 Portfolio-webdev.code-workspace
 package-lock.json

@@ -1,6 +1,6 @@
 import React from "react";
 import * as data from '../js/header.json'
-import profileImg from '../img/profil_img_sm.png'
+import profileImg from '../img/profil_foto_neu_sm.jpg'
 
 export default Title = () => {
 
