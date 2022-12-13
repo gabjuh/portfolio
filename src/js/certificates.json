@@ -1,0 +1,23 @@
+{
+  "containerTitle": "Certificates",
+  "certificates": [
+    {
+      "id": "design",
+      "title": "Certified Web Designer",
+      "icon": "https://gaborjuhasz.de/src/ico/design.png",
+      "file": "https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"
+    },
+    {
+      "id": "javascript",
+      "title": "Certified JavaScript Developer",
+      "icon": "https://gaborjuhasz.de/src/ico/js.png",
+      "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"
+    },
+    {
+      "id": "php",
+      "title": "Certified PHP Developer",
+      "icon": "https://gaborjuhasz.de/src/ico/php.png",
+      "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "header": {
+    "greeting": "Hey, my name is",
+    "name": "Gábor Juhász",
+    "jobTitle": "Fullstack Web Developer",
+    "aboutTitle": "About me",
+    "aboutText": "I work as a junior Web Developer and looking for new challenges in my career in order to become more experienced. I do frontend using SCSS and Bootstrap, and backend with the combination of most popular technologies like NodeJS, React, Laravel and MySQL. My future plan is to create scalable and more complex applications, and learn new technologies in order to give a better user experience and performance.",
+    "quoteLine1": "\"Success is not the question of talent,",
+    "quoteLine2": "but the question of diligence.\""
+  }
+}

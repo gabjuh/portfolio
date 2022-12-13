@@ -1,0 +1,236 @@
+$info: #5599ad;
+$white: #F7F1EA;
+$light: #d0a980;
+$secondary: #8c5502;
+
+$linear-gradient-border-height: 250px;
+
+// Import all of Bootstrap's CSS
+@import "~bootstrap/scss/bootstrap";
+
+// Default variable overrides
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap');
+
+.certificate-images {
+  width: 70px;
+  height: 70px;
+}
+
+html {
+  margin: 0;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+  font-weight:200;
+  background-color: $primary!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+#rounded-bg, 
+#footer {
+  border-radius: .6rem;
+}
+
+#sticker {
+  opacity:1;
+  position: absolute;
+  width: 500px;
+  height: 140px;
+  font-size: 2rem;
+  text-align: center;
+  color: $white;
+  border-bottom: 3rem solid #CC1507;
+  border-left: 3rem solid transparent;
+  border-right: 3rem solid transparent;
+  line-height: 3rem;
+  transform: rotate(-45deg);
+  left: -9.2rem;
+  top: 2rem;
+  box-shadow: 0px 10px 5px -8px rgba(0, 0, 0, .5);
+}
+
+#sticker span {
+  position: absolute;
+  bottom: -2.9rem;
+  left: 0;
+  width: 100%;
+}
+
+#job-title {
+  display: none;
+}
+
+#header-name {
+  color: $secondary;
+  font-weight: 600;
+}
+
+#profile-img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+}
+
+#title-text {
+  padding-top: 3.5rem;
+}
+
+#about{
+  h4 {
+    font-weight: 400;
+  }
+  p {
+    letter-spacing: .02rem;
+  }
+}
+
+#about-text {
+  font-size: 1.2rem;
+}
+
+#header-name {
+  font-size: 3rem;
+  white-space: nowrap;
+}
+
+#quote blockquote{
+  font-family: 'Grape Nuts', cursive;
+  font-style: italic;
+  font-size: 1.75rem;
+  
+}
+
+#get-cv a {
+  border: none;
+}
+
+#get-cv a img {
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition:    all .3s ease-in-out;
+  -o-transition:      all .3s ease-in-out;
+  -ms-transition:     all .3s ease-in-out;
+  transition:         all .3s ease-in-out;
+  width: 50px;
+}
+
+#get-cv:hover {
+  border: none;
+  img{
+    box-shadow: rgba(255, 255, 255, .85) 0px 0px 50px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition:    all .3s ease-in-out;
+    -o-transition:      all .3s ease-in-out;
+    -ms-transition:     all .3s ease-in-out;
+    transition:         all .3s ease-in-out;
+  }
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+#certificates-box::before {
+  content: '';
+  display: block;
+  padding-top: 0;
+  background: $light;
+  background: linear-gradient(180deg, $light 0%, $white 100%);
+  height: $linear-gradient-border-height;
+  width: 100%;
+}
+
+#certificates-box::after {
+  content: '';
+  display: block;
+  background: $white;
+  background: linear-gradient(180deg, $white 0%, $info 100%);
+  height: $linear-gradient-border-height;
+  width: 100%;
+}
+
+.experiences-title {
+  font-weight:200;
+}
+
+#get-cv {
+  position: relative;
+  span {
+    margin-top: .2rem;
+  }
+}
+
+#demos p {
+  letter-spacing: .02rem;
+}
+
+#jobs .calender-ico,
+#jobs .location-ico {
+  margin-top: -.375rem;
+}
+
+#schools .calender-ico {
+  margin-top: -.36rem;
+}
+
+@media (max-width: 991px) {
+  #sticker {
+    display: none;
+  }
+  #job-title {
+    display: block;
+  }
+  #certificates {
+    padding-left: 8rem;
+  }
+  #title-text {
+    padding-top: 2.4rem;
+  }
+}  
+
+@media (max-width: 767px) {
+  #certificates {
+    padding-left: 3.6rem;
+  }
+  #rounded-bg {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  #certificates {
+    padding-left: 2rem;
+  }
+  #title-text {
+    padding-top: 0rem;
+  }
+  #certificates-box::before,
+  #certificates-box::after {
+    height: 75px;
+  }
+
+}
+
+@media (max-width: 504px) {
+  #certificates {
+    padding-left: 0;
+  }
+  #quote blockquote{
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 285px) {
+  #header-name {
+    font-size: 2.2rem;
+  }
+
+  #profile-img {
+    width: 200px;
+    height: 200px;
+  }
+}

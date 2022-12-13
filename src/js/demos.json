@@ -1,0 +1,45 @@
+{
+  "containerTitle": "Demos",
+  "demos": [
+    {
+      "id": "tictactoe",
+      "name": "Tic-Tac-Toe",
+      "description": "This is a basic multiplayer game for the simple-game-lovers. :-) ",
+      "logos": ["nodejs.png", "express_js.png", "js.png","socketio.png"],
+      "images": ["tic-tac-toe.png"],
+      "link": "#"
+    },
+    {
+      "id": "puzzle",
+      "name": "Puzzle",
+      "description": "This 'Push Puzzle' game has been created in React. Different difficulty levels can be chosen, the images can be changed during the game, and for help you can blend in the numbers.",
+      "logos": ["nodejs.png", "react.png", "js.png"],
+      "images": ["puzzle.png"],
+      "link": "https://puzzle.gaborjuhasz.de/"
+    },
+    {
+      "id": "memories",
+      "name": "Memories",
+      "description": "In a very nice way can you create your memories. Images can be bound in using a url link, and you can select the cards background color, that you can change also outside of the editing page. There is also a trash function for temporary deleting memories.",
+      "logos": ["php.png", "mysql.png", "laravel.png", "nodejs.png", "js.png", "bootstrap.png"],
+      "images": ["memory_1.png", "memory_2.jpg"],
+      "link": "#"
+    },
+    {
+      "id": "todos",
+      "name": "Todos",
+      "description": "Let's make your own todo list in order to be more effective in your workflow and your daily life.",
+      "logos": ["php.png", "mysql.png", "laravel.png", "nodejs.png", "js.png", "bootstrap.png"],
+      "images": ["todos.png"],
+      "link": "#"
+    },
+    {
+      "id": "stablegram",
+      "name": "stablegram",
+      "description": "My main project stablegram is actually an instagram clone. There are the most basic functions available like create and like posts, search and follow other users, and edit your profile. You can register with an email address or with a GitHub account.",
+      "logos": ["php.png", "mysql.png", "laravel.png", "nodejs.png", "bootstrap.png"],
+      "images": ["stablegram.png"],
+      "link": "#"
+    }
+  ]
+}
