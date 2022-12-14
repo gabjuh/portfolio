@@ -24578,48 +24578,64 @@ var _footer = require("./components/Footer");
 var _footerDefault = parcelHelpers.interopDefault(_footer);
 var _getCv = require("./components/GetCv");
 var _getCvDefault = parcelHelpers.interopDefault(_getCv);
-exports.default = App = ()=>{
+var _s = $RefreshSig$();
+exports.default = App = _s(()=>{
+    _s();
+    const [language, setLanguage] = (0, _react.useState)("de");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container-md bg-light p-0 mt-md-5 shadow-lg",
         id: "rounded-bg",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {}, void 0, false, {
-                fileName: "src/app.js",
-                lineNumber: 12,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _getCvDefault.default), {}, void 0, false, {
-                fileName: "src/app.js",
-                lineNumber: 13,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _experiencesDefault.default), {}, void 0, false, {
-                fileName: "src/app.js",
-                lineNumber: 14,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _certificatesDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {
+                currentLanguage: language,
+                setLanguage: setLanguage
+            }, void 0, false, {
                 fileName: "src/app.js",
                 lineNumber: 15,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _demosDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _getCvDefault.default), {
+                currentLanguage: language
+            }, void 0, false, {
                 fileName: "src/app.js",
                 lineNumber: 16,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _experiencesDefault.default), {
+                currentLanguage: language
+            }, void 0, false, {
                 fileName: "src/app.js",
                 lineNumber: 17,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _certificatesDefault.default), {
+                currentLanguage: language
+            }, void 0, false, {
+                fileName: "src/app.js",
+                lineNumber: 18,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _demosDefault.default), {
+                currentLanguage: language
+            }, void 0, false, {
+                fileName: "src/app.js",
+                lineNumber: 19,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {
+                currentLanguage: language
+            }, void 0, false, {
+                fileName: "src/app.js",
+                lineNumber: 20,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/app.js",
-        lineNumber: 11,
+        lineNumber: 14,
         columnNumber: 5
     }, undefined);
-};
+}, "yI19mtdeG9LEBM3Hem3egVN0U08=");
 
   $parcel$ReactRefreshHelpers$f79a.postlude(module);
 } finally {
@@ -24644,22 +24660,29 @@ var _about = require("./About");
 var _aboutDefault = parcelHelpers.interopDefault(_about);
 var _quote = require("./Quote");
 var _quoteDefault = parcelHelpers.interopDefault(_quote);
-exports.default = Header = ()=>{
+exports.default = Header = (props)=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "py-4 px-sm-4 px-1 pb-5",
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _titleDefault.default), {}, void 0, false, {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _titleDefault.default), {
+                    currentLanguage: props.currentLanguage,
+                    setLanguage: props.setLanguage
+                }, void 0, false, {
                     fileName: "src/components/Header.js",
                     lineNumber: 10,
                     columnNumber: 9
                 }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutDefault.default), {}, void 0, false, {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutDefault.default), {
+                    currentLanguage: props.currentLanguage
+                }, void 0, false, {
                     fileName: "src/components/Header.js",
                     lineNumber: 11,
                     columnNumber: 9
                 }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _quoteDefault.default), {}, void 0, false, {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _quoteDefault.default), {
+                    currentLanguage: props.currentLanguage
+                }, void 0, false, {
                     fileName: "src/components/Header.js",
                     lineNumber: 12,
                     columnNumber: 9
@@ -24691,10 +24714,12 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _headerJson = require("../js/header.json");
-var _profilFotoNeuSmJpg = require("../img/profil_foto_neu_sm.jpg");
-var _profilFotoNeuSmJpgDefault = parcelHelpers.interopDefault(_profilFotoNeuSmJpg);
-exports.default = Title = ()=>{
-    const header = _headerJson.header;
+var _profilFotoNeuSm2Jpg = require("../img/profil_foto_neu_sm2.jpg");
+var _profilFotoNeuSm2JpgDefault = parcelHelpers.interopDefault(_profilFotoNeuSm2Jpg);
+var _flags = require("./Flags");
+var _flagsDefault = parcelHelpers.interopDefault(_flags);
+exports.default = Title = (props)=>{
+    const header = _headerJson.header[props.currentLanguage];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             id: "title",
@@ -24707,12 +24732,12 @@ exports.default = Title = ()=>{
                         children: header.jobTitle
                     }, void 0, false, {
                         fileName: "src/components/Title.js",
-                        lineNumber: 12,
+                        lineNumber: 13,
                         columnNumber: 40
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/Title.js",
-                    lineNumber: 12,
+                    lineNumber: 13,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24720,15 +24745,15 @@ exports.default = Title = ()=>{
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                         id: "profile-img",
                         className: "rounded-circle",
-                        src: (0, _profilFotoNeuSmJpgDefault.default)
+                        src: (0, _profilFotoNeuSm2JpgDefault.default)
                     }, void 0, false, {
                         fileName: "src/components/Title.js",
-                        lineNumber: 14,
+                        lineNumber: 15,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/Title.js",
-                    lineNumber: 13,
+                    lineNumber: 14,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24740,7 +24765,7 @@ exports.default = Title = ()=>{
                             children: header.greeting
                         }, void 0, false, {
                             fileName: "src/components/Title.js",
-                            lineNumber: 17,
+                            lineNumber: 18,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
@@ -24748,7 +24773,7 @@ exports.default = Title = ()=>{
                             children: header.name
                         }, void 0, false, {
                             fileName: "src/components/Title.js",
-                            lineNumber: 18,
+                            lineNumber: 19,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -24757,19 +24782,34 @@ exports.default = Title = ()=>{
                             children: header.jobTitle
                         }, void 0, false, {
                             fileName: "src/components/Title.js",
-                            lineNumber: 19,
+                            lineNumber: 20,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            id: "languages",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _flagsDefault.default), {
+                                currentLanguage: props.currentLanguage,
+                                setLanguage: props.setLanguage
+                            }, void 0, false, {
+                                fileName: "src/components/Title.js",
+                                lineNumber: 22,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/Title.js",
+                            lineNumber: 21,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Title.js",
-                    lineNumber: 16,
+                    lineNumber: 17,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/Title.js",
-            lineNumber: 11,
+            lineNumber: 12,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
@@ -24780,8 +24820,8 @@ exports.default = Title = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/header.json":"6tnQc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../img/profil_foto_neu_sm.jpg":"kq2od"}],"6tnQc":[function(require,module,exports) {
-module.exports = JSON.parse('{"header":{"greeting":"Hey, my name is","name":"G\xe1bor Juh\xe1sz","jobTitle":"Fullstack Web Developer","aboutTitle":"About me","aboutText":"I work as a junior Web Developer and looking for new challenges in my career in order to become more experienced. I do frontend using SCSS and Bootstrap, and backend with the combination of most popular technologies like NodeJS, React, Laravel and MySQL. My future plan is to create scalable and more complex applications, and learn new technologies in order to give a better user experience and performance.","quoteLine1":"\\"Success is not the question of talent,","quoteLine2":"but the question of diligence.\\""}}');
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/header.json":"6tnQc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Flags":"jRaKA","../img/profil_foto_neu_sm2.jpg":"7XAQX"}],"6tnQc":[function(require,module,exports) {
+module.exports = JSON.parse('{"header":{"en":{"greeting":"Hey, my name is","name":"G\xe1bor Juh\xe1sz","jobTitle":"Fullstack Webdeveloper","aboutTitle":"About me","aboutText":"I work as a junior Web Developer and looking for new challenges in my career in order to become more experienced. I do frontend using SCSS and Bootstrap, and backend with the combination of most popular technologies like NodeJS, React, Laravel and MySQL. My future plan is to create scalable and more complex applications, and learn new technologies in order to give a better user experience and performance.","quoteLine1":"\\"Success is not the question of talent,","quoteLine2":"but the question of diligence.\\""},"de":{"greeting":"Hey, mein Name ist","name":"G\xe1bor Juh\xe1sz","jobTitle":"Fullstack Webentwickler","aboutTitle":"\xdcber mich","aboutText":"Ich bin Junior-Webentwickler und suche nach neuen beruflichen Heraus- forderungen, um mehr Erfahrungen zu sammeln. Im Frontend arbeite ich mit SCSS und Tailwind CSS und im Backend mit einer Kombination der g\xe4ngigsten Technologien wie NodeJS, React, Laravel und MySQL. Mein Plan f\xfcr die Zukunft ist es, komplexere Anwendungen zu erstellen, die sich an wachsende Anforderungen anpassen. Au\xdferdem m\xf6chte ich neue Technologien erlernen, um in der IT eine bessere Benutzerfreundlichkeit und Leistung bieten zu k\xf6nnen.","quoteLine1":"\\"Erfolgreich zu werden ist nicht die Frage des Talentes,","quoteLine2":"sondern immer bereit zu sein zu lernen.\\""},"hu":{"greeting":"\xdcdv, a nevem","name":"Juh\xe1sz G\xe1bor","jobTitle":"Fullstack Webfejlesztő","aboutTitle":"R\xf3lam","aboutText":"P\xe1lyakezdő Webfejlesztők\xe9nt dolgozom \xfaj kih\xedv\xe1sokat keresve a karrieremben, hogy m\xe9g t\xf6bb tapasztalatra tehessek szert. SCSS, Bootstrap vagy TailwindCSS technol\xf3gi\xe1kkal k\xe9sz\xedtek modern \xe9s ig\xe9nyes Frontend fel\xfcleteket, \xe9s NodeJS, React vagy Laravel \xe9s MySQL seg\xedts\xe9g\xe9vel Backend-et. A j\xf6vőben szeretn\xe9k bőv\xedthető, \xf6sszetettebb alkalmaz\xe1sokat k\xe9sz\xedteni, \xe9s tov\xe1bbi technol\xf3gi\xe1kat megismerni a kiel\xe9g\xedtőbb felhaszn\xe1l\xf3i \xe9lm\xe9ny \xe9s a nagyobb teljes\xedtm\xe9ny el\xe9r\xe9se \xe9rdek\xe9ben.","quoteLine1":"\\"A siker első sorban nem tehets\xe9g,","quoteLine2":"hanem sokkal ink\xe1bb szorgalom k\xe9rd\xe9se.\\""}}}');
 
 },{}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -24947,8 +24987,248 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}],"kq2od":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "profil_foto_neu_sm.a1960325.jpg" + "?" + Date.now();
+},{"react-refresh/runtime":"786KC"}],"jRaKA":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$fa90 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$fa90.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _process = require("process");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _flag = require("./Flag");
+var _flagDefault = parcelHelpers.interopDefault(_flag);
+var _s = $RefreshSig$();
+const Flags = (props)=>{
+    _s();
+    const addSelectedClassIfSelected = (id, classname)=>props.currentLanguage != id ? classname : "";
+    const svgs = document.querySelectorAll("#languages svg");
+    const showSelectedFlag = ()=>svgs.forEach((svg)=>{
+            svg.id === props.currentLanguage ? svg.classList.remove("unselectedFlag") : svg.classList.add("unselectedFlag");
+        });
+    (0, _react.useEffect)(()=>{
+        showSelectedFlag();
+    }, [
+        props.currentLanguage
+    ]);
+    const flagSvgs = (language)=>{
+        switch(language){
+            case "hu":
+                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                    onClick: ()=>props.setLanguage("hu"),
+                    xmlns: "http://www.w3.org/2000/svg",
+                    id: "hu",
+                    viewBox: "0 0 640 480",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("g", {
+                        "fill-rule": "evenodd",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                                fill: "#fff",
+                                d: "M640 480H0V0h640z"
+                            }, void 0, false, {
+                                fileName: "src/components/Flags.jsx",
+                                lineNumber: 29,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                                fill: "#388d00",
+                                d: "M640 480H0V320h640z"
+                            }, void 0, false, {
+                                fileName: "src/components/Flags.jsx",
+                                lineNumber: 30,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                                fill: "#d43516",
+                                d: "M640 160.1H0V.1h640z"
+                            }, void 0, false, {
+                                fileName: "src/components/Flags.jsx",
+                                lineNumber: 31,
+                                columnNumber: 15
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Flags.jsx",
+                        lineNumber: 28,
+                        columnNumber: 13
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/Flags.jsx",
+                    lineNumber: 27,
+                    columnNumber: 11
+                }, undefined);
+            case "de":
+                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                    onClick: ()=>props.setLanguage("de"),
+                    xmlns: "http://www.w3.org/2000/svg",
+                    id: "de",
+                    viewBox: "0 0 640 480",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#ffce00",
+                            d: "M0 320h640v160H0z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 39,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            d: "M0 0h640v160H0z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 40,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#d00",
+                            d: "M0 160h640v160H0z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 41,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Flags.jsx",
+                    lineNumber: 38,
+                    columnNumber: 11
+                }, undefined);
+            case "en":
+                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                    onClick: ()=>props.setLanguage("en"),
+                    className: "flagSvg unselectedFlag",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    id: "en",
+                    viewBox: "0 0 640 480",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#012169",
+                            d: "M0 0h640v480H0z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 48,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#FFF",
+                            d: "m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 49,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#C8102E",
+                            d: "m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 50,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#FFF",
+                            d: "M241 0v480h160V0H241zM0 160v160h640V160H0z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 51,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("path", {
+                            fill: "#C8102E",
+                            d: "M0 193v96h640v-96H0zM273 0v480h96V0h-96z"
+                        }, void 0, false, {
+                            fileName: "src/components/Flags.jsx",
+                            lineNumber: 52,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Flags.jsx",
+                    lineNumber: 47,
+                    columnNumber: 11
+                }, undefined);
+        }
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _flagDefault.default), {
+                id: "de",
+                currentLanguage: props.currentLanguage,
+                setLanguage: props.setLanguage,
+                children: [
+                    flagSvgs("de"),
+                    showSelectedFlag()
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Flags.jsx",
+                lineNumber: 60,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _flagDefault.default), {
+                id: "en",
+                currentLanguage: props.currentLanguage,
+                setLanguage: props.setLanguage,
+                children: [
+                    flagSvgs("en"),
+                    showSelectedFlag()
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Flags.jsx",
+                lineNumber: 64,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
+};
+_s(Flags, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+_c = Flags;
+exports.default = Flags;
+var _c;
+$RefreshReg$(_c, "Flags");
+
+  $parcel$ReactRefreshHelpers$fa90.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","process":"d5jf4","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Flag":"gGK1J"}],"gGK1J":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1ff4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1ff4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const Flag = (props)=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "flag",
+        children: props.children
+    }, void 0, false, {
+        fileName: "src/components/Flag.js",
+        lineNumber: 5,
+        columnNumber: 5
+    }, undefined);
+};
+_c = Flag;
+exports.default = Flag;
+var _c;
+$RefreshReg$(_c, "Flag");
+
+  $parcel$ReactRefreshHelpers$1ff4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7XAQX":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "profil_foto_neu_sm2.cbe7e83c.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -24997,8 +25277,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _headerJson = require("../js/header.json");
-exports.default = About = ()=>{
-    const header = _headerJson.header;
+exports.default = About = (props)=>{
+    const header = _headerJson.header[props.currentLanguage];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "mx-2 mx-sm-0",
@@ -25061,8 +25341,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _headerJson = require("../js/header.json");
-exports.default = Quote = ()=>{
-    const header = _headerJson.header;
+exports.default = Quote = (props)=>{
+    const header = _headerJson.header[props.currentLanguage];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             id: "quote",
@@ -25120,7 +25400,8 @@ var _jobsDefault = parcelHelpers.interopDefault(_jobs);
 var _schools = require("./Schools");
 var _schoolsDefault = parcelHelpers.interopDefault(_schools);
 var _experiencesJson = require("../js/experiences.json");
-exports.default = Experiences = ()=>{
+exports.default = Experiences = (props)=>{
+    const language = props.currentLanguage;
     const jobs = _experiencesJson.jobs;
     const schools = _experiencesJson.schools;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25137,58 +25418,60 @@ exports.default = Experiences = ()=>{
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                                 className: "mb-4 ",
-                                children: "Job Experience"
-                            }, void 0, false, {
-                                fileName: "src/components/Experiences.js",
-                                lineNumber: 17,
-                                columnNumber: 15
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jobsDefault.default), {
-                                jobs: jobs
+                                children: props.currentLanguage === "en" ? "Job Experience" : "Job Erfahrungen"
                             }, void 0, false, {
                                 fileName: "src/components/Experiences.js",
                                 lineNumber: 18,
                                 columnNumber: 15
                             }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                                className: "mt-5 mb-4 ",
-                                children: "Schools"
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jobsDefault.default), {
+                                jobs: jobs,
+                                currentLanguage: language
                             }, void 0, false, {
                                 fileName: "src/components/Experiences.js",
-                                lineNumber: 19,
+                                lineNumber: 21,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                className: "mt-5 mb-4 ",
+                                children: props.currentLanguage === "en" ? "Schools" : "Ausbildung"
+                            }, void 0, false, {
+                                fileName: "src/components/Experiences.js",
+                                lineNumber: 22,
                                 columnNumber: 15
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _schoolsDefault.default), {
-                                schools: schools
+                                schools: schools,
+                                currentLanguage: language
                             }, void 0, false, {
                                 fileName: "src/components/Experiences.js",
-                                lineNumber: 20,
+                                lineNumber: 25,
                                 columnNumber: 15
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Experiences.js",
-                        lineNumber: 16,
+                        lineNumber: 17,
                         columnNumber: 13
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/Experiences.js",
-                    lineNumber: 15,
+                    lineNumber: 16,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Experiences.js",
-                lineNumber: 14,
+                lineNumber: 15,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/Experiences.js",
-            lineNumber: 13,
+            lineNumber: 14,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/Experiences.js",
-        lineNumber: 12,
+        lineNumber: 13,
         columnNumber: 5
     }, undefined);
 };
@@ -25213,14 +25496,16 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _job = require("./Job");
 var _jobDefault = parcelHelpers.interopDefault(_job);
 exports.default = Jobs = (props)=>{
+    console.log(props.jobs[props.currentLanguage]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: props.jobs.map((job, i, a)=>{
+        children: props.jobs[props.currentLanguage].map((job, i, a)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 id: "jobs",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jobDefault.default), {
                     data: job,
                     i: i,
-                    a: a
+                    a: a,
+                    currentLanguage: props.currentLanguage
                 }, job.id, false, {
                     fileName: "src/components/Jobs.js",
                     lineNumber: 12,
@@ -25277,7 +25562,7 @@ exports.default = Job = (props)=>{
         href: `${(0, _domainDefault.default)}src/pdf/${data.recommendation}`,
         target: "_blank",
         children: [
-            "Letter of Recommendation",
+            props.currentLanguage === "en" ? "Letter of Recommendation" : "Empfehlungsbrief",
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                 className: "ms-2 mt-1",
                 width: "18",
@@ -25303,7 +25588,8 @@ exports.default = Job = (props)=>{
                     data.title,
                     typeof data.recommendation !== "undefined" ? recommendation : null,
                     typeof data.reference !== "undefined" ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonReferencesDefault.default), {
-                        id: data.id
+                        id: data.id,
+                        currentLanguage: props.currentLanguage
                     }, void 0, false, {
                         fileName: "src/components/Job.js",
                         lineNumber: 36,
@@ -25525,7 +25811,7 @@ exports.default = ButtonReferences = (props)=>{
             role: "button",
             "aria-expanded": "false",
             "aria-controls": `#collapse-${id}`,
-            children: "References"
+            children: props.currentLanguage === "en" ? "References" : "Referenz"
         }, void 0, false, {
             fileName: "src/components/Button-References.js",
             lineNumber: 9,
@@ -25585,7 +25871,7 @@ var _school = require("./School");
 var _schoolDefault = parcelHelpers.interopDefault(_school);
 exports.default = Schools = (props)=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: props.schools.map((t, i, a)=>{
+        children: props.schools[props.currentLanguage].map((t, i, a)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 id: "schools",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _schoolDefault.default), {
@@ -25723,7 +26009,7 @@ exports.default = School = (props)=>{
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Tech":"6PnKo","../js/helpers":"hGI1E","../svg/calendar.svg":"6KoM0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6lnyZ":[function(require,module,exports) {
-module.exports = JSON.parse('{"jobs":[{"id":"inline_kuriere","title":"inline Kuriere","location":"Hamburg","tech":["PHP7","HTML5","CSS3"],"start":"2018","end":"2019","recommendation":"inline_Referenz.pdf"},{"id":"LMS","title":"Musikschule der GEMEINN\xdcTZIGEN","location":"L\xfcbeck","tech":["Joomla","CMS","JS"],"start":"2017","end":"","reference":["https://luebeckermusikschule.de"]},{"id":"web4musicians","title":"Online Portfolio for Musicians","location":"Remote","tech":["Wordpress","JS"],"start":"2017","end":"2021","reference":["https://ferdinand-junghaenel.de","https://concierto-iberico.com","https://franciskahajdu.de","https://leasuter.com"]}],"schools":[{"school":"Webmasters Fernakademie","title":"Moderne Webanwendungen mit PHP & MySQL","tech":["SQL","PHP8","OOP","Laravel"],"start":"2022","end":"2022"},{"school":"Webmasters Fernakademie","title":"Moderne Webanwendungen mit JavaScript","tech":["JS","JS DOM","NodeJS","TDD","React"],"start":"2021","end":"2022"},{"school":"Webmasters Fernakademie","title":"Webdesign & Usability","tech":["HTML5","CSS3","UX/UI","SCSS","Bootstrap"],"start":"2021","end":"2021"},{"school":"sgd Fernschule","title":"PHP & MySQL","tech":["PHP7","MySQL","Git","HTML5","CSS3"],"start":"2020","end":"2021"},{"school":"Udemy","title":"Several basic courses","tech":["HTML5","CSS3","Wordpress","JS","JQ","Git"],"start":"2017","end":"2019"}]}');
+module.exports = JSON.parse('{"jobs":{"en":[{"id":"inline_kuriere","title":"inline Kuriere","location":"Hamburg","tech":["PHP7","HTML5","CSS3"],"start":"2018","end":"2019","recommendation":"inline_Referenz.pdf"},{"id":"LMS","title":"Musikschule der GEMEINN\xdcTZIGEN","location":"L\xfcbeck","tech":["Joomla","CMS","JS"],"start":"2017","end":"","reference":["https://luebeckermusikschule.de"]},{"id":"web4musicians","title":"Online Portfolio for Musicians","location":"Remote","tech":["Wordpress","JS"],"start":"2017","end":"2021","reference":["https://ferdinand-junghaenel.de","https://concierto-iberico.com","https://franciskahajdu.de","https://leasuter.com"]}],"de":[{"id":"inline_kuriere","title":"inline Kuriere","location":"Hamburg","tech":["PHP7","HTML5","CSS3"],"start":"2018","end":"2019","recommendation":"inline_Referenz.pdf"},{"id":"LMS","title":"Musikschule der GEMEINN\xdcTZIGEN","location":"L\xfcbeck","tech":["Joomla","CMS","JS"],"start":"2017","end":"","reference":["https://luebeckermusikschule.de"]},{"id":"web4musicians","title":"Online Portfolio f\xfcr Musiker","location":"Home Office","tech":["Wordpress","JS"],"start":"2017","end":"2021","reference":["https://ferdinand-junghaenel.de","https://concierto-iberico.com","https://franciskahajdu.de","https://leasuter.com"]}]},"schools":{"en":[{"school":"Webmasters Fernakademie","title":"Modern Webapps with PHP & MySQL","tech":["SQL","PHP8","OOP","Laravel"],"start":"2022","end":"2022"},{"school":"Webmasters Fernakademie","title":"Modern Webapps with JavaScript","tech":["JS","JS DOM","NodeJS","TDD","React"],"start":"2021","end":"2022"},{"school":"Webmasters Fernakademie","title":"Webdesign & Usability","tech":["HTML5","CSS3","UX/UI","SCSS","Bootstrap","TailwindCSS"],"start":"2021","end":"2021"},{"school":"sgd Fernschule","title":"PHP & MySQL","tech":["PHP7","MySQL","Git","HTML5","CSS3"],"start":"2020","end":"2021"},{"school":"Udemy","title":"Several basic courses","tech":["HTML5","CSS3","Wordpress","JS","JQ","Git"],"start":"2017","end":"2019"}],"de":[{"school":"Webmasters Fernakademie","title":"Moderne Webanwendungen mit PHP & MySQL","tech":["SQL","PHP8","OOP","Laravel"],"start":"2022","end":"2022"},{"school":"Webmasters Fernakademie","title":"Moderne Webanwendungen mit JavaScript","tech":["JS","JS DOM","NodeJS","TDD","React"],"start":"2021","end":"2022"},{"school":"Webmasters Fernakademie","title":"Webdesign & Usability","tech":["HTML5","CSS3","UX/UI","SCSS","Bootstrap","TailwindCSS"],"start":"2021","end":"2021"},{"school":"sgd Fernschule","title":"PHP & MySQL","tech":["PHP7","MySQL","Git","HTML5","CSS3"],"start":"2020","end":"2021"},{"school":"Udemy","title":"Mehrere grundlegende Kurse","tech":["HTML5","CSS3","Wordpress","JS","JQ","Git"],"start":"2017","end":"2019"}]}}');
 
 },{}],"3P7gb":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b3c5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -25738,8 +26024,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _certificatesJson = require("../js/certificates.json");
-exports.default = Certificates = ()=>{
-    const certificates = _certificatesJson.certificates;
+exports.default = Certificates = (props)=>{
+    const certificates = _certificatesJson.certificates[props.currentLanguage];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "bg-white",
         id: "certificates-box",
@@ -25748,7 +26034,7 @@ exports.default = Certificates = ()=>{
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                     className: "text-center mt-3 mb-5",
-                    children: _certificatesJson.containerTitle
+                    children: props.currentLanguage === "en" ? "Certificates" : "Zertifikate"
                 }, void 0, false, {
                     fileName: "src/components/Certificates.js",
                     lineNumber: 11,
@@ -25769,7 +26055,7 @@ exports.default = Certificates = ()=>{
                                         alt: `Certificate Icon - ${certificate.id}`
                                     }, void 0, false, {
                                         fileName: "src/components/Certificates.js",
-                                        lineNumber: 18,
+                                        lineNumber: 20,
                                         columnNumber: 19
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25779,7 +26065,7 @@ exports.default = Certificates = ()=>{
                                                 children: certificate.title
                                             }, void 0, false, {
                                                 fileName: "src/components/Certificates.js",
-                                                lineNumber: 20,
+                                                lineNumber: 22,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
@@ -25787,33 +26073,33 @@ exports.default = Certificates = ()=>{
                                                 href: certificate.file,
                                                 target: "_blank",
                                                 download: true,
-                                                children: "Download Certificate"
+                                                children: props.currentLanguage === "en" ? "Download Certificate" : "Zertifikat herunterladen"
                                             }, void 0, false, {
                                                 fileName: "src/components/Certificates.js",
-                                                lineNumber: 21,
+                                                lineNumber: 23,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/Certificates.js",
-                                        lineNumber: 19,
+                                        lineNumber: 21,
                                         columnNumber: 19
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Certificates.js",
-                                lineNumber: 17,
+                                lineNumber: 19,
                                 columnNumber: 17
                             }, undefined)
                         }, certificate.id, false, {
                             fileName: "src/components/Certificates.js",
-                            lineNumber: 16,
+                            lineNumber: 18,
                             columnNumber: 15
                         }, undefined);
                     })
                 }, void 0, false, {
                     fileName: "src/components/Certificates.js",
-                    lineNumber: 12,
+                    lineNumber: 14,
                     columnNumber: 9
                 }, undefined)
             ]
@@ -25835,7 +26121,7 @@ exports.default = Certificates = ()=>{
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../js/certificates.json":"gDAwi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gDAwi":[function(require,module,exports) {
-module.exports = JSON.parse('{"containerTitle":"Certificates","certificates":[{"id":"design","title":"Certified Web Designer","icon":"https://gaborjuhasz.de/src/ico/design.png","file":"https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"},{"id":"javascript","title":"Certified JavaScript Developer","icon":"https://gaborjuhasz.de/src/ico/js.png","file":"https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"},{"id":"php","title":"Certified PHP Developer","icon":"https://gaborjuhasz.de/src/ico/php.png","file":"https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"}]}');
+module.exports = JSON.parse('{"containerTitle":"Certificates","certificates":{"en":[{"id":"design","title":"Certified Web Designer","icon":"https://gaborjuhasz.de/src/ico/design.png","file":"https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"},{"id":"javascript","title":"Certified JavaScript Developer","icon":"https://gaborjuhasz.de/src/ico/js.png","file":"https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"},{"id":"php","title":"Certified PHP Developer","icon":"https://gaborjuhasz.de/src/ico/php.png","file":"https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"}],"de":[{"id":"design","title":"Zertifizierter Web Designer","icon":"https://gaborjuhasz.de/src/ico/design.png","file":"https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"},{"id":"javascript","title":"Zertifizierter JavaScript Entwickler","icon":"https://gaborjuhasz.de/src/ico/js.png","file":"https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"},{"id":"php","title":"Zertifizierter PHP Entwickler","icon":"https://gaborjuhasz.de/src/ico/php.png","file":"https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"}]}}');
 
 },{}],"f6RaK":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7993 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -26242,7 +26528,9 @@ var _cvSvg = require("../svg/cv.svg");
 var _cvSvgDefault = parcelHelpers.interopDefault(_cvSvg);
 var _domain = require("../js/domain");
 var _domainDefault = parcelHelpers.interopDefault(_domain);
-exports.default = GetCv = ()=>{
+var _cvJson = require("../js/cv.json");
+exports.default = GetCv = (props)=>{
+    const cv = _cvJson.cv[props.currentLanguage];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "container-lg bg-info text-center py-4",
@@ -26258,26 +26546,26 @@ exports.default = GetCv = ()=>{
                         alt: "CV Icon"
                     }, void 0, false, {
                         fileName: "src/components/GetCv.js",
-                        lineNumber: 10,
+                        lineNumber: 14,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         className: "d-inline-block text-white fs-4 my-2",
-                        children: "Get my CV!"
+                        children: cv.text
                     }, void 0, false, {
                         fileName: "src/components/GetCv.js",
-                        lineNumber: 11,
+                        lineNumber: 15,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/GetCv.js",
-                lineNumber: 9,
+                lineNumber: 13,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/GetCv.js",
-            lineNumber: 8,
+            lineNumber: 12,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
@@ -26288,10 +26576,13 @@ exports.default = GetCv = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../svg/cv.svg":"7gNM1","../js/domain":"a3bdn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7gNM1":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../svg/cv.svg":"7gNM1","../js/domain":"a3bdn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../js/cv.json":"jxMNM"}],"7gNM1":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "cv.5d9588bd.svg" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"1SICI":[function(require,module,exports) {
+},{"./helpers/bundle-url":"lgJ39"}],"jxMNM":[function(require,module,exports) {
+module.exports = JSON.parse('{"cv":{"en":{"text":"Get my CV!"},"de":{"text":"Lebenslauf herunterladen"},"hu":{"text":"\xd6n\xe9letrajz let\xf6lt\xe9se"}}}');
+
+},{}],"1SICI":[function(require,module,exports) {
 // Import our custom CSS
 var _stylesScss = require("../scss/styles.scss");
 // Import all of Bootstrap's JS

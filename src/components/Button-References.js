@@ -14,7 +14,7 @@ export default ButtonReferences = props => {
         aria-expanded="false" 
         aria-controls={`#collapse-${id}`} 
       >
-        References
+        {props.currentLanguage === 'en' ? 'References' : 'Referenz'}
       </a>
     </>
   )

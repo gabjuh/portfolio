@@ -1,9 +1,9 @@
 import React from "react";
 import * as data from "../js/header.json"
 
-export default About = () => {
+export default About = props => {
 
-  const header = data.header
+  const header = data.header[props.currentLanguage]
 
   return (
     <>

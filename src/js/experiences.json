@@ -1,75 +1,152 @@
 {
-  "jobs": [    
-    {
-      "id": "inline_kuriere",
-      "title": "inline Kuriere",
-      "location": "Hamburg",
-      "tech": ["PHP7", "HTML5", "CSS3"],
-      "start": "2018",
-      "end": "2019",
-      "recommendation": "inline_Referenz.pdf"
-    },
-    {
-      "id": "LMS",
-      "title": "Musikschule der GEMEINNÜTZIGEN",
-      "location": "Lübeck",
-      "tech": ["Joomla", "CMS", "JS"],
-      "start": "2017",
-      "end": "",
-      "reference": [
-        "https://luebeckermusikschule.de"
-      ]
-    },
-    {
-      "id": "web4musicians",
-      "title": "Online Portfolio for Musicians",
-      "location": "Remote",
-      "tech": ["Wordpress", "JS"],
-      "start": "2017",
-      "end": "2021",
-      "reference": [
-        "https://ferdinand-junghaenel.de",
-        "https://concierto-iberico.com",
-        "https://franciskahajdu.de",
-        "https://leasuter.com"
-      ]
-    }
-  ],
-  "schools": [
-    {
-      "school": "Webmasters Fernakademie",
-      "title": "Moderne Webanwendungen mit PHP & MySQL",
-      "tech": ["SQL", "PHP8", "OOP", "Laravel"],
-      "start": "2022",
-      "end": "2022"
-    },
-    {
-      "school": "Webmasters Fernakademie",
-      "title": "Moderne Webanwendungen mit JavaScript",
-      "tech": ["JS", "JS DOM", "NodeJS", "TDD", "React"],
-      "start": "2021",
-      "end": "2022"
-    },
-    {
-      "school": "Webmasters Fernakademie",
-      "title": "Webdesign & Usability",
-      "tech": ["HTML5", "CSS3", "UX/UI", "SCSS", "Bootstrap"],
-      "start": "2021",
-      "end": "2021"
-    },
-    {
-      "school": "sgd Fernschule",
-      "title": "PHP & MySQL",
-      "tech": ["PHP7", "MySQL", "Git", "HTML5", "CSS3"],
-      "start": "2020",
-      "end": "2021"
-    },
-    {
-      "school": "Udemy",
-      "title": "Several basic courses",
-      "tech": ["HTML5", "CSS3", "Wordpress", "JS", "JQ", "Git"],
-      "start": "2017",
-      "end": "2019"
-    }
-  ]
+  "jobs": {
+    "en": [    
+      {
+        "id": "inline_kuriere",
+        "title": "inline Kuriere",
+        "location": "Hamburg",
+        "tech": ["PHP7", "HTML5", "CSS3"],
+        "start": "2018",
+        "end": "2019",
+        "recommendation": "inline_Referenz.pdf"
+      },
+      {
+        "id": "LMS",
+        "title": "Musikschule der GEMEINNÜTZIGEN",
+        "location": "Lübeck",
+        "tech": ["Joomla", "CMS", "JS"],
+        "start": "2017",
+        "end": "",
+        "reference": [
+          "https://luebeckermusikschule.de"
+        ]
+      },
+      {
+        "id": "web4musicians",
+        "title": "Online Portfolio for Musicians",
+        "location": "Remote",
+        "tech": ["Wordpress", "JS"],
+        "start": "2017",
+        "end": "2021",
+        "reference": [
+          "https://ferdinand-junghaenel.de",
+          "https://concierto-iberico.com",
+          "https://franciskahajdu.de",
+          "https://leasuter.com"
+        ]
+      }
+    ],
+    "de": [    
+      {
+        "id": "inline_kuriere",
+        "title": "inline Kuriere",
+        "location": "Hamburg",
+        "tech": ["PHP7", "HTML5", "CSS3"],
+        "start": "2018",
+        "end": "2019",
+        "recommendation": "inline_Referenz.pdf"
+      },
+      {
+        "id": "LMS",
+        "title": "Musikschule der GEMEINNÜTZIGEN",
+        "location": "Lübeck",
+        "tech": ["Joomla", "CMS", "JS"],
+        "start": "2017",
+        "end": "",
+        "reference": [
+          "https://luebeckermusikschule.de"
+        ]
+      },
+      {
+        "id": "web4musicians",
+        "title": "Online Portfolio für Musiker",
+        "location": "Home Office",
+        "tech": ["Wordpress", "JS"],
+        "start": "2017",
+        "end": "2021",
+        "reference": [
+          "https://ferdinand-junghaenel.de",
+          "https://concierto-iberico.com",
+          "https://franciskahajdu.de",
+          "https://leasuter.com"
+        ]
+      }
+    ]
+  },
+  "schools": {
+    "en": [
+      {
+        "school": "Webmasters Fernakademie",
+        "title": "Modern Webapps with PHP & MySQL",
+        "tech": ["SQL", "PHP8", "OOP", "Laravel"],
+        "start": "2022",
+        "end": "2022"
+      },
+      {
+        "school": "Webmasters Fernakademie",
+        "title": "Modern Webapps with JavaScript",
+        "tech": ["JS", "JS DOM", "NodeJS", "TDD", "React"],
+        "start": "2021",
+        "end": "2022"
+      },
+      {
+        "school": "Webmasters Fernakademie",
+        "title": "Webdesign & Usability",
+        "tech": ["HTML5", "CSS3", "UX/UI", "SCSS", "Bootstrap", "TailwindCSS"],
+        "start": "2021",
+        "end": "2021"
+      },
+      {
+        "school": "sgd Fernschule",
+        "title": "PHP & MySQL",
+        "tech": ["PHP7", "MySQL", "Git", "HTML5", "CSS3"],
+        "start": "2020",
+        "end": "2021"
+      },
+      {
+        "school": "Udemy",
+        "title": "Several basic courses",
+        "tech": ["HTML5", "CSS3", "Wordpress", "JS", "JQ", "Git"],
+        "start": "2017",
+        "end": "2019"
+      }
+    ],
+    "de": [
+      {
+        "school": "Webmasters Fernakademie",
+        "title": "Moderne Webanwendungen mit PHP & MySQL",
+        "tech": ["SQL", "PHP8", "OOP", "Laravel"],
+        "start": "2022",
+        "end": "2022"
+      },
+      {
+        "school": "Webmasters Fernakademie",
+        "title": "Moderne Webanwendungen mit JavaScript",
+        "tech": ["JS", "JS DOM", "NodeJS", "TDD", "React"],
+        "start": "2021",
+        "end": "2022"
+      },
+      {
+        "school": "Webmasters Fernakademie",
+        "title": "Webdesign & Usability",
+        "tech": ["HTML5", "CSS3", "UX/UI", "SCSS", "Bootstrap", "TailwindCSS"],
+        "start": "2021",
+        "end": "2021"
+      },
+      {
+        "school": "sgd Fernschule",
+        "title": "PHP & MySQL",
+        "tech": ["PHP7", "MySQL", "Git", "HTML5", "CSS3"],
+        "start": "2020",
+        "end": "2021"
+      },
+      {
+        "school": "Udemy",
+        "title": "Mehrere grundlegende Kurse",
+        "tech": ["HTML5", "CSS3", "Wordpress", "JS", "JQ", "Git"],
+        "start": "2017",
+        "end": "2019"
+      }
+    ]
+  }
 }

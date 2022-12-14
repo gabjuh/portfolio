@@ -23,7 +23,7 @@ export default Job = props => {
         href={`${domain}src/pdf/${data.recommendation}`} 
         target="_blank"
       >
-        Letter of Recommendation
+        {props.currentLanguage === 'en' ? 'Letter of Recommendation' : 'Empfehlungsbrief'}
         <img className="ms-2 mt-1" width="18" height="18" src={newTabIco} alt="" />
       </a>
     )
@@ -33,7 +33,7 @@ export default Job = props => {
       <span className="d-block fw-bold mt-3 mb-2 fs-5 experiences-title">
         {data.title}
         {typeof data.recommendation !== 'undefined' ? recommendation : null}
-        {typeof data.reference !== 'undefined' ? <ButtonReferences id={data.id}/> : null}
+        {typeof data.reference !== 'undefined' ? <ButtonReferences id={data.id} currentLanguage={props.currentLanguage} /> : null}
       </span>
       {reference.length > 0 ? <References id={data.id} arr={reference}/> : null}
       <div className={`row mb-3 pb-3 ${skipLastBorder(props.i, props.a)}`}>

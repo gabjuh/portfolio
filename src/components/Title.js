@@ -1,10 +1,11 @@
 import React from "react";
 import * as data from '../js/header.json'
-import profileImg from '../img/profil_foto_neu_sm.jpg'
+import profileImg from '../img/profil_foto_neu_sm2.jpg'
+import Flags from "./Flags";
 
-export default Title = () => {
+export default Title = props => {
 
-  const header = data.header
+  const header = data.header[props.currentLanguage]
 
   return (
     <>
@@ -17,6 +18,9 @@ export default Title = () => {
           <h4 className="text-white">{header.greeting}</h4>
           <h1 id="header-name">{header.name}</h1>
           <h4 id="job-title" className="text-white">{header.jobTitle}</h4>
+          <div id="languages">
+            <Flags currentLanguage={props.currentLanguage} setLanguage={props.setLanguage} />
+          </div>
         </div>     
       </div>
     </>

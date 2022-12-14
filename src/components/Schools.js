@@ -5,7 +5,7 @@ export default Schools = props => {
   
   return (
     <>
-      {props.schools.map((t, i, a) => {
+      {props.schools[props.currentLanguage].map((t, i, a) => {
         return (
           <div id="schools">
             <School 

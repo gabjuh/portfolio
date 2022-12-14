@@ -2,10 +2,10 @@ import React from "react";
 import Job from "./Job"
 
 export default Jobs = props => {
-
+  console.log(props.jobs[props.currentLanguage])
   return (
     <>
-      {props.jobs.map((job, i, a) => {
+      {props.jobs[props.currentLanguage].map((job, i, a) => {
         
         return (
           <div id="jobs">
@@ -14,6 +14,7 @@ export default Jobs = props => {
               data={job} 
               i={i}
               a={a}
+              currentLanguage={props.currentLanguage}
             />
           </div>
         )

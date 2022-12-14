@@ -12074,12 +12074,41 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   padding-top: 3.5rem;
 }
 
+#languages {
+  width: 20px;
+  position: absolute;
+  top: -1rem;
+  right: 0;
+}
+
+.flag {
+  width: 25px;
+  height: auto;
+}
+
+.flagSvg {
+  display: inline !important;
+}
+
+.flag svg {
+  cursor: pointer;
+  display: inline !important;
+}
+
+.unselectedFlag {
+  opacity: .3;
+}
+
 #about h4, #about .h4 {
   font-weight: 400;
 }
 
 #about p {
   letter-spacing: .02rem;
+}
+
+.test {
+  border: 2px solid red;
 }
 
 #about-text {
@@ -12188,6 +12217,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   #rounded-bg {
     border-radius: 0;
   }
+
+  #languages {
+    top: 5px;
+  }
 }
 
 @media (max-width: 575px) {
@@ -12201,6 +12234,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 
   #certificates-box:before, #certificates-box:after {
     height: 75px;
+  }
+
+  #languages {
+    right: 12px;
   }
 }
 

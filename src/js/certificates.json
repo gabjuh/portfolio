@@ -1,23 +1,45 @@
 {
   "containerTitle": "Certificates",
-  "certificates": [
-    {
-      "id": "design",
-      "title": "Certified Web Designer",
-      "icon": "https://gaborjuhasz.de/src/ico/design.png",
-      "file": "https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"
-    },
-    {
-      "id": "javascript",
-      "title": "Certified JavaScript Developer",
-      "icon": "https://gaborjuhasz.de/src/ico/js.png",
-      "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"
-    },
-    {
-      "id": "php",
-      "title": "Certified PHP Developer",
-      "icon": "https://gaborjuhasz.de/src/ico/php.png",
-      "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"
-    }
-  ]
+  "certificates": {
+    "en": [
+      {
+        "id": "design",
+        "title": "Certified Web Designer",
+        "icon": "https://gaborjuhasz.de/src/ico/design.png",
+        "file": "https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"
+      },
+      {
+        "id": "javascript",
+        "title": "Certified JavaScript Developer",
+        "icon": "https://gaborjuhasz.de/src/ico/js.png",
+        "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"
+      },
+      {
+        "id": "php",
+        "title": "Certified PHP Developer",
+        "icon": "https://gaborjuhasz.de/src/ico/php.png",
+        "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"
+      }
+    ],
+    "de": [
+      {
+        "id": "design",
+        "title": "Zertifizierter Web Designer",
+        "icon": "https://gaborjuhasz.de/src/ico/design.png",
+        "file": "https://gaborjuhasz.de/src/pdf/webdesign-usability-certificate.pdf"
+      },
+      {
+        "id": "javascript",
+        "title": "Zertifizierter JavaScript Entwickler",
+        "icon": "https://gaborjuhasz.de/src/ico/js.png",
+        "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-javascript-certificate.pdf"
+      },
+      {
+        "id": "php",
+        "title": "Zertifizierter PHP Entwickler",
+        "icon": "https://gaborjuhasz.de/src/ico/php.png",
+        "file": "https://gaborjuhasz.de/src/pdf/moderne-webanwendungen-mit-php-mysql-certificate.pdf"
+      }
+    ]
+  }
 }

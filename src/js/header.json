@@ -1,11 +1,31 @@
 {
   "header": {
-    "greeting": "Hey, my name is",
-    "name": "Gábor Juhász",
-    "jobTitle": "Fullstack Web Developer",
-    "aboutTitle": "About me",
-    "aboutText": "I work as a junior Web Developer and looking for new challenges in my career in order to become more experienced. I do frontend using SCSS and Bootstrap, and backend with the combination of most popular technologies like NodeJS, React, Laravel and MySQL. My future plan is to create scalable and more complex applications, and learn new technologies in order to give a better user experience and performance.",
-    "quoteLine1": "\"Success is not the question of talent,",
-    "quoteLine2": "but the question of diligence.\""
+    "en": {
+      "greeting": "Hey, my name is",
+      "name": "Gábor Juhász",
+      "jobTitle": "Fullstack Webdeveloper",
+      "aboutTitle": "About me",
+      "aboutText": "I work as a junior Web Developer and looking for new challenges in my career in order to become more experienced. I do frontend using SCSS and Bootstrap, and backend with the combination of most popular technologies like NodeJS, React, Laravel and MySQL. My future plan is to create scalable and more complex applications, and learn new technologies in order to give a better user experience and performance.",
+      "quoteLine1": "\"Success is not the question of talent,",
+      "quoteLine2": "but the question of diligence.\""
+    },
+    "de": {
+      "greeting": "Hey, mein Name ist",
+      "name": "Gábor Juhász",
+      "jobTitle": "Fullstack Webentwickler",
+      "aboutTitle": "Über mich",
+      "aboutText": "Ich bin Junior-Webentwickler und suche nach neuen beruflichen Heraus- forderungen, um mehr Erfahrungen zu sammeln. Im Frontend arbeite ich mit SCSS und Tailwind CSS und im Backend mit einer Kombination der gängigsten Technologien wie NodeJS, React, Laravel und MySQL. Mein Plan für die Zukunft ist es, komplexere Anwendungen zu erstellen, die sich an wachsende Anforderungen anpassen. Außerdem möchte ich neue Technologien erlernen, um in der IT eine bessere Benutzerfreundlichkeit und Leistung bieten zu können.",
+      "quoteLine1": "\"Erfolgreich zu werden ist nicht die Frage des Talentes,",
+      "quoteLine2": "sondern immer bereit zu sein zu lernen.\""
+    },
+    "hu": {
+      "greeting": "Üdv, a nevem",
+      "name": "Juhász Gábor",
+      "jobTitle": "Fullstack Webfejlesztő",
+      "aboutTitle": "Rólam",
+      "aboutText": "Pályakezdő Webfejlesztőként dolgozom új kihívásokat keresve a karrieremben, hogy még több tapasztalatra tehessek szert. SCSS, Bootstrap vagy TailwindCSS technológiákkal készítek modern és igényes Frontend felületeket, és NodeJS, React vagy Laravel és MySQL segítségével Backend-et. A jövőben szeretnék bővíthető, összetettebb alkalmazásokat készíteni, és további technológiákat megismerni a kielégítőbb felhasználói élmény és a nagyobb teljesítmény elérése érdekében.",
+      "quoteLine1": "\"A siker első sorban nem tehetség,",
+      "quoteLine2": "hanem sokkal inkább szorgalom kérdése.\""
+    }
   }
 }
